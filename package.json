@@ -14,10 +14,10 @@
     "cy:build": "npm run --prefix example build",
     "cy:open": "cypress open",
     "cy:run": "cypress run --config video=false",
-    "test:ci": "yarn run build && start-server-and-test cy:build http://localhost:1234 cy:run",
+    "test:ci": "start-server-and-test cy:build http://localhost:1234 cy:run",
     "cy": "start-server-and-test cy:start http://localhost:1234 cy:open",
     "lint": "tsdx lint",
-    "prepare": "tsdx build"
+    "prepare": "tsdx build && npm run --prefix example install"
   },
   "peerDependencies": {
     "react": ">=16"
