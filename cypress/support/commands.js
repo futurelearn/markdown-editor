@@ -34,3 +34,14 @@ Cypress.Commands.add(
   },
   paste
 );
+
+Cypress.Commands.add(
+  'keyboardShortcut',
+  (shortcut) => {
+    if (Cypress.platform === 'darwin') {
+      return cy.type(`{meta}${shortcut}`);
+    } else {
+      return cy.type(`{ctrl}${shortcut}`);
+    }
+  }
+)

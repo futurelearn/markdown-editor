@@ -8,7 +8,7 @@ describe('Strong', () => {
   ['b', 'B'].forEach(shortcut => {
     it(`supports mod ${shortcut} as a keyboard shortcut`, () => {
       cy.get('#editor')
-        .type(`{meta}${shortcut}`)
+        .keyboardShortcut(shortcut)
         .type('I like strong text');
       cy.get('#editor strong').should('have.text', 'I like strong text');
       cy.get('input[type="hidden"]').should('have.value', '**I like strong text**');

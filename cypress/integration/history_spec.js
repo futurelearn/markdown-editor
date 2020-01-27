@@ -11,11 +11,11 @@ describe('History', () => {
       .should('have.text', 'pigs are smarter than dogs');
 
     cy.get('#editor')
-      .type('{meta}z')
+      .keyboardShortcut('z')
       .should('have.text', '');
 
     cy.get('#editor')
-      .type('{meta}y')
+      .keyboardShortcut('y')
       .should('have.text', 'pigs are smarter than dogs');
   });
 });

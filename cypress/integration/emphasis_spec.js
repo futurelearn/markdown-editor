@@ -8,7 +8,7 @@ describe('Emphasis', () => {
   ['i', 'I'].forEach(shortcut => {
     it(`supports mod ${shortcut} keyboard shortcut`, () => {
       cy.get('#editor')
-        .type(`{meta}${shortcut}`)
+        .keyboardShortcut(shortcut)
         .type('I like italic text');
       cy.get('#editor em').should('have.text', 'I like italic text');
     });

@@ -7,7 +7,7 @@ describe('Inline code', () => {
 
   it('supports mod ` as a keyboard shortcut', () => {
     cy.get('#editor')
-      .type('{meta}`')
+      .keyboardShortcut('`')
       .type('I like code');
     cy.get('#editor code').should('have.text', 'I like code');
   });
