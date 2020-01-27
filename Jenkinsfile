@@ -22,6 +22,14 @@ pipeline {
         echo "Running cypress"
         sh 'npm run test:ci'
       }
+    },
+    stage('release') {
+      steps {
+        sh 'npm run build'
+        sh 'git add -f dist'
+        sh 'git commit -m "prepare release"'
+        sh 'git push -f origin release'
+      }
     }
   }
 }
