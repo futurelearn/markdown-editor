@@ -9,7 +9,7 @@ pipeline {
   }
   environment {
     CI = 'true'
-    HOME = '.'
+    HOME = "${env.WORKSPACE}"
   }
   stages {
     // first stage installs node dependencies and Cypress binary
