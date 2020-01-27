@@ -17,7 +17,7 @@
     "test:ci": "start-server-and-test cy:build http://localhost:1234 cy:run",
     "cy": "start-server-and-test cy:start http://localhost:1234 cy:open",
     "lint": "tsdx lint",
-    "prepare": "tsdx build && npm run --prefix example install"
+    "prepare": "tsdx build && npm --prefix example install"
   },
   "peerDependencies": {
     "react": ">=16"
