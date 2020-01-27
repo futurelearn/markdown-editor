@@ -1,0 +1,89 @@
+{
+  "version": "0.1.0",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test --passWithNoTests",
+    "cy:start": "npm run --prefix example start",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run --config video=false",
+    "test:ci": "yarn run build && start-server-and-test cy:start http://localhost:1234 cy:run",
+    "cy": "start-server-and-test cy:start http://localhost:1234 cy:open",
+    "lint": "tsdx lint",
+    "prepare": "tsdx build"
+  },
+  "peerDependencies": {
+    "react": ">=16"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.scss$": "<rootDir>/test/__mocks__/styleMock.js"
+    }
+  },
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "name": "@futurelearn/markdown-editor",
+  "author": "Sam McTaggart",
+  "module": "dist/markdown-editor.esm.js",
+  "devDependencies": {
+    "@babel/core": "^7.7.7",
+    "@types/classnames": "^2.2.9",
+    "@types/codemirror": "^0.0.82",
+    "@types/highlight.js": "^9.12.3",
+    "@types/jest": "^24.0.25",
+    "@types/lodash": "^4.14.149",
+    "@types/lowlight": "^0.0.0",
+    "@types/prosemirror-commands": "^1.0.1",
+    "@types/prosemirror-history": "^1.0.1",
+    "@types/prosemirror-inputrules": "^1.0.2",
+    "@types/prosemirror-keymap": "^1.0.1",
+    "@types/prosemirror-markdown": "^1.0.3",
+    "@types/prosemirror-schema-list": "^1.0.1",
+    "@types/prosemirror-state": "^1.2.3",
+    "@types/prosemirror-view": "^1.11.2",
+    "@types/react": "^16.9.17",
+    "@types/react-dom": "^16.9.4",
+    "babel-loader": "^8.0.6",
+    "classnames": "^2.2.6",
+    "cypress": "^3.8.2",
+    "cypress-file-upload": "^3.5.3",
+    "highlight.js": "^9.17.1",
+    "husky": "^4.0.1",
+    "lodash": "^4.17.15",
+    "lowlight": "^1.13.0",
+    "node-sass": "^4.13.1",
+    "postcss-cssnext": "^3.1.0",
+    "postcss-import": "^12.0.1",
+    "prosemirror-commands": "^1.1.3",
+    "prosemirror-history": "^1.1.3",
+    "prosemirror-inputrules": "^1.1.2",
+    "prosemirror-keymap": "^1.1.3",
+    "prosemirror-markdown": "^1.4.4",
+    "prosemirror-schema-list": "^1.1.2",
+    "prosemirror-state": "^1.3.2",
+    "prosemirror-tables": "^1.0.0",
+    "prosemirror-utils": "^0.9.6",
+    "prosemirror-view": "^1.13.7",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "rollup-plugin-postcss": "^2.0.3",
+    "start-server-and-test": "^1.10.7",
+    "ts-loader": "^6.2.1",
+    "tsdx": "^0.12.1",
+    "tslib": "^1.10.0",
+    "typescript": "^3.7.4"
+  },
+  "dependencies": {
+    "lodash-es": "^4.17.15"
+  }
+}
