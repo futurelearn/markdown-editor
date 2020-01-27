@@ -18,13 +18,13 @@ pipeline {
         echo "Running build ${env.BUILD_ID} on ${env.JENKINS_URL}"
         sh 'npm ci'
       }
-    },
+    }
     stage('test') {
       steps {
         echo "Running cypress"
         sh 'npm run test:ci'
       }
-    },
+    }
     stage('release') {
       steps {
         sh 'npm run build'
