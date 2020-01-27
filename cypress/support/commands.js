@@ -37,11 +37,14 @@ Cypress.Commands.add(
 
 Cypress.Commands.add(
   'keyboardShortcut',
-  (shortcut) => {
+  {
+    prevSubject: true,
+  },
+  (subject, shortcut) => {
     if (Cypress.platform === 'darwin') {
-      return cy.type(`{meta}${shortcut}`);
+      return cy.get(subject).type(`{meta}${shortcut}`);
     } else {
-      return cy.type(`{ctrl}${shortcut}`);
+      return cy.get(subject).type(`{ctrl}${shortcut}`);
     }
   }
 )
