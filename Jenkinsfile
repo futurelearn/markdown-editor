@@ -27,6 +27,7 @@ pipeline {
     }
     stage('release') {
       steps {
+        echo "Releasing package"
         sh 'npm run build'
         sh 'git add -f dist'
         sh 'git commit -m "prepare release"'
