@@ -9,6 +9,7 @@ pipeline {
   }
   environment {
     CI = 'true'
+    HOME = '.'
   }
   stages {
     // first stage installs node dependencies and Cypress binary
