@@ -2,7 +2,7 @@
 
 describe('Code block', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:1234');
+    cy.visit('http://localhost:1234/index.html');
   });
 
   ['```', '~~~'].forEach(shortcut => {

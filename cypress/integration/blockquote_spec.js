@@ -2,7 +2,7 @@
 
 describe('Blockquote', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:1234');
+    cy.visit('http://localhost:1234/index.html');
   });
 
   it('supports the > blockquote markdown keyboard shortcut', () => {

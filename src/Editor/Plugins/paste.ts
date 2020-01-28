@@ -1,14 +1,12 @@
 import { Plugin } from 'prosemirror-state';
 import { Slice } from 'prosemirror-model';
-import { defaultMarkdownParser } from '../markdown';
-import  { Schema } from 'prosemirror-model';
+import { defaultMarkdownParser, MarkdownSchema } from '../markdown';
 
-export const pastePlugin = (schema: Schema, onError: (errors: string) => any) =>
+export const pastePlugin = (schema: MarkdownSchema, onError: (errors: string) => any) =>
   new Plugin({
     props: {
       clipboardTextParser: text => {
         const fragment = defaultMarkdownParser(schema).parse(text).content;
-        console.log(defaultMarkdownParser(schema));
         return Slice.maxOpen(fragment);
       },
       transformPastedHTML: html => {

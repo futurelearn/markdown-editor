@@ -70,10 +70,13 @@ const createEditorView = ({
     ...markPlugins(schema),
     ...nodePlugins(schema),
     editorPlugin(classes, placeholder),
-    highlightPlugin({ name: schema.nodes.code_block.name }),
   ];
 
+  schema.nodes.code_block &&
+    plugins.push(highlightPlugin({ name: schema.nodes.code_block.name }));
+
   imageUploadEndpoint &&
+    schema.nodes.image &&
     plugins.push(
       placeholderPlugin,
       imageDropPlugin(imageUploadEndpoint, onError)

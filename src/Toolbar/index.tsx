@@ -29,11 +29,11 @@ const Toolbar: FunctionComponent<ToolbarInterface> = ({
         />
       ))}
 
-      <ImageUpload
+      {!disabledItems.includes('image') && <ImageUpload
         editor={editor}
         imageUploadEndpoint={imageUploadEndpoint}
         onError={onError}
-      />
+      />}
     </div>
   );
 };

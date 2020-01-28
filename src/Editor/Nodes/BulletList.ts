@@ -15,7 +15,7 @@ class BulletList extends Node {
     return toggleList(this._type, this.listItemType);
   }
 
-  get rule() {
+  get rules() {
     return [wrappingInputRule(/^\s*([-+*])\s$/, this._type)];
   }
 }

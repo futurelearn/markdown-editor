@@ -2,7 +2,7 @@
 
 describe('Interacting with the clipboard', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:1234');
+    cy.visit('http://localhost:1234/index.html');
   });
 
   it('supports copy and pasting of plain text', () => {

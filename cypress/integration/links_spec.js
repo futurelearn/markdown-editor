@@ -2,7 +2,7 @@
 
 describe('Links', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:1234');
+    cy.visit('http://localhost:1234/index.html');
   });
 
   it('marks up links as a tags', () => {

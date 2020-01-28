@@ -2,7 +2,7 @@
 
 describe('Inline code', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:1234');
+    cy.visit('http://localhost:1234/index.html');
   });
 
   it('supports mod ` as a keyboard shortcut', () => {

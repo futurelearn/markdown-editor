@@ -35,7 +35,9 @@ pipeline {
         sh 'git add -f dist'
         sh 'git commit -m "prepare release"'
         sh 'npm version minor'
-        sh 'git push -f origin release'
+        sh 'git show'
+        sh 'git branch'
+        sh 'git remote -v'
       }
     }
   }

@@ -15,7 +15,7 @@ class OrderedList extends Node {
     return toggleList(this._type, this.listItemType);
   }
 
-  get rule() {
+  get rules() {
     return [
       wrappingInputRule(
         /^(\d+)\.\s$/,

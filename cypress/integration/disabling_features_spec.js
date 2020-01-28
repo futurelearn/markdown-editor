@@ -2,30 +2,72 @@
 
 describe('Disabling features', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:1234');
+    cy.visit('http://localhost:1234/disabled.html');
   });
 
-  it('disables marks that are specified as disabled', () => {
-    cy.get('#editorWithDisabled [data-icon="code"]').should('not.exist');
-    cy.get('#editorWithDisabled')
-      .type('`not code`')
-      .get('code')
-      .should('not.exist');
-    cy.get('#editorWithDisabled .ProseMirror')
-      .paste('`still not code`')
-      .get('code')
-      .should('not.exist');
+  [
+    {
+      name: 'heading',
+      tag: 'h1',
+      text: '# Not a heading',
+    },
+    {
+      name: 'blockquote',
+      tag: 'blockquote',
+      text: '> Not a blockquote',
+    },
+    {
+      name: 'code_block',
+      tag: 'pre',
+      text: '```Not code',
+    },
+    {
+      name: 'bullet_list',
+      tag: 'ul',
+      text: '* Not a list item',
+    },
+    {
+      name: 'ordered_list',
+      tag: 'ol',
+      text: '1. Not a list item',
+    },
+    {
+      name: 'code',
+      tag: 'code',
+      text: '`I am not code`',
+    },
+  ].forEach(({ name, tag, text }) => {
+    it(`disables ${name} if specified as disabled`, () => {
+      cy.get(`[data-item="${name}"]`).should('not.exist');
+      cy.get('#editor')
+        .type(text)
+        .get(tag)
+        .should('not.exist');
+      cy.get('#editor .ProseMirror')
+        .paste(text)
+        .get(tag)
+        .should('not.exist');
+    });
   });
 
-  it.only('disables nodes that are specified as disabled', () => {
-    cy.get('#editorWithDisabled [data-icon="heading"]').should('not.exist');
-    cy.get('#editorWithDisabled')
-      .type('# Not heading')
-      .get('h1')
-      .should('not.exist');
-    cy.get('#editorWithDisabled .ProseMirror')
-      .paste('# Still not heading')
-      .get('h1')
-      .should('not.exist');
+  it.only('disables links', () => {
+    cy.get('#editor').type('http://nolongeralink.com');
+    cy.get('#editor a').should('not.exist');
+    cy.get('#editor .ProseMirror').paste('[link](http://nolongeralink.com)');
+    cy.get('#editor a').should('not.exist');
+  });
+
+  it('disables images', () => {
+    const fileName = 'image.jpg';
+    cy.fixture('imageUpload').as('imageJSON');
+
+    cy.get(`[data-item="image"]`).should('not.exist');
+    cy.fixture(fileName).then(fileContent => {
+      cy.get('.ProseMirror').upload(
+        { fileContent, fileName, mimeType: 'image/jpg' },
+        { subjectType: 'drag-n-drop' }
+      );
+    });
+    cy.get('#editor .image__placeholder').should('have.length', 0);
   });
 });

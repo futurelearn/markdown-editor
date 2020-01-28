@@ -11,12 +11,16 @@ const App = () => {
       <MarkdownEditor
         id="editor"
         name="editor"
-        imageUploadEndpoint={{
-          url:
-            'https://api.imgbb.com/1/upload?key=2296ef17f6f7baea4b9330d8c2aff17e',
-          csrfToken: '123',
-        }}
         onError={setErrors}
+        disabledMarks={['code', 'link']}
+        disabledNodes={[
+          'heading',
+          'blockquote',
+          'code_block',
+          'bullet_list',
+          'ordered_list',
+          'image',
+        ]}
       />
       {!!errors.length && <p>{errors}</p>}
     </div>

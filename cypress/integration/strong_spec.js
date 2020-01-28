@@ -2,7 +2,7 @@
 
 describe('Strong', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:1234')
+    cy.visit('http://localhost:1234/index.html')
   });
 
   ['b', 'B'].forEach(shortcut => {

@@ -10,6 +10,6 @@ export interface MarkdownEditorInterface {
   rows?: number;
   imageUploadEndpoint?: { url: string, csrfToken: string };
   onError?: any;
-  disabledNodes?: string[];
-  disabledMarks?: string[];
+  disabledNodes?: ('code' | 'link')[];
+  disabledMarks?: ('heading' | 'blockquote' | 'code_block' | 'bullet_list' | 'ordered_list' | 'image')[];
 }

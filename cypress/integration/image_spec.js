@@ -4,7 +4,7 @@ describe('Image', () => {
   const fileName = 'image.jpg';
   beforeEach(() => {
     cy.server({ delay: 100 });
-    cy.visit('http://localhost:1234');
+    cy.visit('http://localhost:1234/index.html');
     cy.fixture('imageUpload').as('imageJSON');
     cy.route('POST', 'https://api.imgbb.com/**', '@imageJSON').as('postImage');
   });

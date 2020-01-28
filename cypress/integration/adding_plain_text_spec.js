@@ -2,7 +2,7 @@
 
 describe('Adding plain text to the editor', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:1234');
+    cy.visit('http://localhost:1234/index.html');
   });
 
   it('sets the correct value', () => {

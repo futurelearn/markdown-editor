@@ -2,7 +2,7 @@
 
 describe('Bullet list', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:1234');
+    cy.visit('http://localhost:1234/index.html');
   });
 
   it('supports * ul as a markdown shortcut', () => {

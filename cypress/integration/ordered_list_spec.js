@@ -2,7 +2,7 @@
 
 describe('Ordered list', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:1234');
+    cy.visit('http://localhost:1234/index.html');
   });
 
   it('supports 1. ol as a markdown shortcut', () => {
