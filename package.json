@@ -21,11 +21,6 @@
   "peerDependencies": {
     "react": ">=16"
   },
-  "jest": {
-    "moduleNameMapper": {
-      "\\.scss$": "<rootDir>/test/__mocks__/styleMock.js"
-    }
-  },
   "prettier": {
     "printWidth": 80,
     "semi": true,

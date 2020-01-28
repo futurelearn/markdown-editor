@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import Item from './Item';
 import { FunctionComponent } from 'react';
 import menuItems from './menuItems';
@@ -10,25 +10,32 @@ const Toolbar: FunctionComponent<ToolbarInterface> = ({
   activeOptions,
   editor,
   imageUploadEndpoint,
+  disabledItems = [],
   onError,
-}) => (
-  <div className="toolbar">
-    {menuItems.map(item => (
-      <Item
-        key={item.name}
-        icon={item.icon}
-        name={item.name}
-        onClick={() => onClick(item)}
-        isActive={activeOptions.includes(item.name)}
-      />
-    ))}
+}) => {
+  const menuItemsToRender = useMemo(() => {
+    return menuItems(editor.state.schema).filter(i => !disabledItems.includes(i.name));
+  }, [disabledItems]);
 
-    <ImageUpload
-      editor={editor}
-      imageUploadEndpoint={imageUploadEndpoint}
-      onError={onError}
-    />
-  </div>
-);
+  return (
+    <div className="toolbar">
+      {menuItemsToRender.map(item => (
+        <Item
+          key={item.name}
+          icon={item.icon}
+          name={item.name}
+          onClick={() => onClick(item)}
+          isActive={activeOptions.includes(item.name)}
+        />
+      ))}
+
+      <ImageUpload
+        editor={editor}
+        imageUploadEndpoint={imageUploadEndpoint}
+        onError={onError}
+      />
+    </div>
+  );
+};
 
 export default Toolbar;

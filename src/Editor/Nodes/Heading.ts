@@ -1,22 +1,33 @@
-import { inputRules, textblockTypeInputRule } from 'prosemirror-inputrules';
-import { schema } from '../markdown';
+import { textblockTypeInputRule } from 'prosemirror-inputrules';
 import { toggleBlockType } from '../utils';
+import Node from './Node';
 
-const TYPE = schema.nodes.heading;
-const PARAGRAPH_TYPE = schema.nodes.paragraph;
 const LEVELS = [1, 2, 3, 4, 5, 6];
 
-const rules = LEVELS.map(l =>
-  textblockTypeInputRule(new RegExp(`^(#{1,${l}})\\s$`), TYPE, () => ({
-    level: l,
-  }))
-);
+class Heading extends Node {
+  get name() {
+    return 'heading';
+  }
 
-export const toolbarItem = {
-  name: TYPE.name,
-  icon: 'Heading',
-  command: toggleBlockType(TYPE, PARAGRAPH_TYPE),
-  type: TYPE,
-};
+  get icon() {
+    return 'Heading';
+  }
 
-export default [inputRules({ rules })];
+  get command() {
+    return toggleBlockType(this._type, this.paragraphType, this.schema);
+  }
+
+  get rules() {
+    return LEVELS.map(l =>
+      textblockTypeInputRule(
+        new RegExp(`^(#{1,${l}})\\s$`),
+        this._type,
+        () => ({
+          level: l,
+        })
+      )
+    );
+  }
+}
+
+export default Heading;

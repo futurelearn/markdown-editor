@@ -79,6 +79,7 @@ const MarkDownEditor: FunctionComponent<MarkdownEditorInterface> = ({
           activeOptions={activeOptions}
           onClick={onToolbarClick}
           editor={editor}
+          disabledItems={[...disabledMarks, ...disabledNodes]}
           imageUploadEndpoint={imageUploadEndpoint}
           onError={onError}
         />

@@ -50,7 +50,7 @@ describe('Code block', () => {
     );
   });
 
-  it.only('supports multiple code blocks of different languages', () => {
+  it('supports multiple code blocks of different languages', () => {
     cy.get('#editor')
       .type('```')
       .type('var name = "code";')

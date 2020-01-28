@@ -1,16 +1,23 @@
-import { inputRules, wrappingInputRule } from 'prosemirror-inputrules';
-import { schema } from '../markdown';
+import { wrappingInputRule } from 'prosemirror-inputrules';
 import { toggleWrap } from '../utils';
+import Node from './Node';
 
-const TYPE = schema.nodes.blockquote;
+class Blockquote extends Node {
+  get name() {
+    return 'blockquote';
+  }
 
-const rules = [wrappingInputRule(/^\s*>\s$/, TYPE)];
+  get icon() {
+    return 'Quote';
+  }
 
-export const toolbarItem = {
-  name: TYPE.name,
-  icon: 'Quote',
-  command: toggleWrap(TYPE),
-  type: TYPE,
-};
+  get command() {
+    return toggleWrap(this._type);
+  }
 
-export default [inputRules({ rules })];
+  get rules() {
+    return [wrappingInputRule(/^\s*>\s$/, this._type)];
+  }
+}
+
+export default Blockquote;

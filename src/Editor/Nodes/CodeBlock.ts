@@ -1,19 +1,23 @@
-import { inputRules, textblockTypeInputRule } from 'prosemirror-inputrules';
-import { schema } from '../markdown';
+import { textblockTypeInputRule } from 'prosemirror-inputrules';
 import { toggleBlockType } from '../utils';
+import Node from './Node';
 
-const TYPE = schema.nodes.code_block;
-const PARAGRAPH_TYPE = schema.nodes.paragraph;
+class CodeBlock extends Node {
+  get name() {
+    return 'code_block';
+  }
 
-const rules = [textblockTypeInputRule(/^(```|~~~)$/, TYPE)];
+  get icon() {
+    return 'CodeBlock';
+  }
 
-export const command = toggleBlockType(TYPE, PARAGRAPH_TYPE);
+  get command() {
+    return toggleBlockType(this._type, this.paragraphType, this.schema);
+  }
 
-export const toolbarItem = {
-  name: TYPE.name,
-  icon: 'CodeBlock',
-  command,
-  type: TYPE,
-};
+  get rules() {
+    return [textblockTypeInputRule(/^(```|~~~)$/, this._type)];
+  }
+}
 
-export default [inputRules({ rules })];
+export default CodeBlock;

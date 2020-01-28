@@ -7,4 +7,5 @@ export interface ToolbarInterface {
   imageUploadEndpoint?: { url: string, csrfToken: string };
   editor: EditorView;
   onError?: any;
+  disabledItems: string[];
 }

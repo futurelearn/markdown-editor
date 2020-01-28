@@ -1,22 +1,31 @@
-import { keymap } from 'prosemirror-keymap';
 import { toggleMark } from 'prosemirror-commands';
-import { inputRules } from 'prosemirror-inputrules';
-import { schema } from '../markdown';
 import { markInputRule } from '../utils';
+import Mark from './Mark';
 
-const TYPE = schema.marks.strong;
+class Strong extends Mark {
+  get name() {
+    return 'strong';
+  }
 
-const shortcuts = {
-  'Mod-b': toggleMark(TYPE),
-  'Mod-B': toggleMark(TYPE),
-};
+  get icon() {
+    return 'Bold';
+  }
 
-const rules = [markInputRule(/(?:\*\*|__)([^*_]+)(?:\*\*|__)$/, TYPE)];
-export const toolbarItem = {
-  name: TYPE.name,
-  icon: 'Bold',
-  command: toggleMark(TYPE),
-  type: TYPE,
-};
+  get command() {
+    return toggleMark(this._type);
+  }
 
-export default [keymap(shortcuts), inputRules({ rules })];
+  get shortcuts() {
+    return {
+      'Mod-b': toggleMark(this._type),
+      'Mod-B': toggleMark(this._type),
+    };
+  }
+
+  get rules() {
+    return [markInputRule(/(?:\*\*|__)([^*_]+)(?:\*\*|__)$/, this._type)];
+  }
+
+}
+
+export default Strong;

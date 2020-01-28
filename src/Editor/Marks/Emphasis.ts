@@ -1,26 +1,33 @@
-import { keymap } from 'prosemirror-keymap';
 import { toggleMark } from 'prosemirror-commands';
-import { inputRules } from 'prosemirror-inputrules';
-import { schema } from '../markdown';
 import { markInputRule } from '../utils';
+import Mark from './Mark';
 
-const TYPE = schema.marks.em;
+class Emphasis extends Mark {
+  get name() {
+    return 'em';
+  }
 
-const shortcuts = {
-  'Mod-i': toggleMark(TYPE),
-  'Mod-I': toggleMark(TYPE),
-};
+  get icon() {
+    return 'Italic';
+  }
 
-const rules = [
-  markInputRule(/(?:^|[^_])(_([^_]+)_)$/, TYPE),
-  markInputRule(/(?:^|[^*])(\*([^*]+)\*)$/, TYPE),
-];
+  get shortcuts() {
+    return {
+      'Mod-i': toggleMark(this._type),
+      'Mod-I': toggleMark(this._type),
+    }
+  }
 
-export const toolbarItem = {
-  name: TYPE.name,
-  icon: 'Italic',
-  command: toggleMark(TYPE),
-  type: TYPE,
-};
+  get rules() {
+    return [
+      markInputRule(/(?:^|[^_])(_([^_]+)_)$/, this._type),
+      markInputRule(/(?:^|[^*])(\*([^*]+)\*)$/, this._type),
+    ]
+  }
 
-export default [keymap(shortcuts), inputRules({ rules })];
+  get command() {
+    return toggleMark(this._type);
+  }
+}
+
+export default Emphasis;
