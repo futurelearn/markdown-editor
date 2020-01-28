@@ -35,14 +35,15 @@ pipeline {
       }
     }
     stage('release') {
-      steps {
-        echo 'Releasing package'
-        sh 'npm run build'
-        sh 'git add -f dist'
-        sh 'git commit -m "prepare release"'
-        sh 'git show'
-        sh 'git branch'
-        sh 'git remote -v'
+      when { branch 'master' }
+        steps {
+          echo 'Releasing package'
+          sh 'npm run build'
+          sh 'git add -f dist'
+          sh 'git commit -m "Prepare release"'
+          sh 'npm version minor'
+          sh 'git push --force-with-lease origin/master'
+        }
       }
     }
   }
