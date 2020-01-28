@@ -8,7 +8,7 @@ export interface CreateEditorViewOptionsInterface {
   classes: string;
   onToolbarChange: (icons: string[]) => any;
   onError: (errors: string) => any;
-  imageUploadEndpoint?: { url: string, csrfToken: string };
+  imageUploadEndpoint?: { url: string; csrfToken: string };
   disabledNodes: string[];
   disabledMarks: string[];
 }

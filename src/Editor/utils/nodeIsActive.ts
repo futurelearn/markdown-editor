@@ -16,7 +16,7 @@ export const nodeIsActive = function(
     return {
       isActive: !!node,
       node: node?.node,
-    }
+    };
   }
 
   return {

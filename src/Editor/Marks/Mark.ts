@@ -63,7 +63,7 @@ class Mark {
         icon: this.icon,
         command: this.command,
         type: this.type,
-      }
+      };
     }
 
     return null;

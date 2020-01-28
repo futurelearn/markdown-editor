@@ -1,9 +1,4 @@
-import React, {
-  FunctionComponent,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import React, { FunctionComponent, useEffect, useRef, useState } from 'react';
 import { MarkdownEditorInterface } from './MarkdownEditorInterface';
 import { createEditorView } from './Editor';
 import { EditorView } from 'prosemirror-view';
@@ -66,15 +61,15 @@ const MarkDownEditor: FunctionComponent<MarkdownEditorInterface> = ({
       editor.destroy();
       initEditor();
     }
-  }, [value]);
+  }, [value]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     initEditor();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>
-      {editor &&
+      {editor && (
         <Toolbar
           activeOptions={activeOptions}
           onClick={onToolbarClick}
@@ -83,8 +78,12 @@ const MarkDownEditor: FunctionComponent<MarkdownEditorInterface> = ({
           imageUploadEndpoint={imageUploadEndpoint}
           onError={onError}
         />
-      }
-      <div id={id} className={classNames({ hasPlaceholder: !markdownValue.length })} ref={editorRef} />
+      )}
+      <div
+        id={id}
+        className={classNames({ hasPlaceholder: !markdownValue.length })}
+        ref={editorRef}
+      />
       <ContextualHelp activeOptions={activeOptions} />
       <input
         type="hidden"

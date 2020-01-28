@@ -13,7 +13,7 @@ class Link extends Mark {
     return [
       linkInputRule(URL_REGEX, this._type),
       markdownLinkInputRule(MARKDOWN_URL_REGX, this._type),
-    ]
+    ];
   }
 
   get inToolbar() {

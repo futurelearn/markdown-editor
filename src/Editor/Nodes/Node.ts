@@ -71,7 +71,7 @@ class Node {
         icon: this.icon,
         command: this.command,
         type: this.type,
-      }
+      };
     }
 
     return null;

@@ -22,19 +22,24 @@ pipeline {
         sh 'npm ci'
       }
     }
+    stage('lint') {
+      steps {
+        echo 'Running linter'
+        sh 'npm run lint'
+      }
+    }
     stage('test') {
       steps {
-        echo "Running cypress"
+        echo 'Running cypress'
         sh 'npm run test:ci'
       }
     }
     stage('release') {
       steps {
-        echo "Releasing package"
+        echo 'Releasing package'
         sh 'npm run build'
         sh 'git add -f dist'
         sh 'git commit -m "prepare release"'
-        sh 'npm version minor'
         sh 'git show'
         sh 'git branch'
         sh 'git remote -v'

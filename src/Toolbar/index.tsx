@@ -14,8 +14,10 @@ const Toolbar: FunctionComponent<ToolbarInterface> = ({
   onError,
 }) => {
   const menuItemsToRender = useMemo(() => {
-    return menuItems(editor.state.schema).filter(i => !disabledItems.includes(i.name));
-  }, [disabledItems]);
+    return menuItems(editor.state.schema).filter(
+      i => !disabledItems.includes(i.name)
+    );
+  }, [disabledItems, editor.state.schema]);
 
   return (
     <div className="toolbar">
@@ -29,11 +31,13 @@ const Toolbar: FunctionComponent<ToolbarInterface> = ({
         />
       ))}
 
-      {!disabledItems.includes('image') && <ImageUpload
-        editor={editor}
-        imageUploadEndpoint={imageUploadEndpoint}
-        onError={onError}
-      />}
+      {!disabledItems.includes('image') && (
+        <ImageUpload
+          editor={editor}
+          imageUploadEndpoint={imageUploadEndpoint}
+          onError={onError}
+        />
+      )}
     </div>
   );
 };

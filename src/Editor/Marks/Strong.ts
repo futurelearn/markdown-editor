@@ -25,7 +25,6 @@ class Strong extends Mark {
   get rules() {
     return [markInputRule(/(?:\*\*|__)([^*_]+)(?:\*\*|__)$/, this._type)];
   }
-
 }
 
 export default Strong;

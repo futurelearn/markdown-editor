@@ -4,7 +4,7 @@ import { EditorView } from 'prosemirror-view';
 export const fileUpload = (
   view: EditorView,
   images: File[],
-  endpoint: { url: string, csrfToken: string },
+  endpoint: { url: string; csrfToken: string },
   position: number,
   onError: (errors: string) => any
 ): boolean => {
