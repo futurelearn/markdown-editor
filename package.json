@@ -32,6 +32,8 @@
     "@types/react-dom": "^16.9.4",
     "babel-loader": "^8.0.6",
     "classnames": "^2.2.6",
+    "cypress": "^3.8.2",
+    "cypress-file-upload": "^3.5.3",
     "husky": "^4.2.1",
     "lodash": "^4.17.15",
     "node-sass": "^4.13.1",
