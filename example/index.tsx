@@ -5,8 +5,15 @@ import MarkdownEditor from '../.';
 import '../dist/markdown-editor.esm.css';
 
 const App = () => {
+  const [errors, setErrors] = React.useState('');
   return (
     <div>
+      <MarkdownEditor
+        id="editor"
+        name="editor"
+        onError={setErrors}
+      />
+      {!!errors.length && <p>{errors}</p>}
     </div>
   );
 };
