@@ -4,6 +4,7 @@ import Code from './Code';
 import Heading from './Heading';
 import Italic from './Italic';
 import Quote from './Quote';
+import UnorderedList from './UnorderedList';
 
 const Icons: IconsInterface = {
   Bold,
@@ -11,6 +12,7 @@ const Icons: IconsInterface = {
   Heading,
   Italic,
   Quote,
+  UnorderedList,
 };
 
 export default Icons;

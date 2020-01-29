@@ -16,6 +16,7 @@ const App = () => {
         disabledNodes={[
           'heading',
           'blockquote',
+          'bullet_list',
         ]}
       />
       {!!errors.length && <p>{errors}</p>}

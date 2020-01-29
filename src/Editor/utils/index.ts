@@ -5,3 +5,4 @@ export { markIsActive } from './markIsActive';
 export { nodeIsActive } from './nodeIsActive';
 export { toggleBlockType } from './toggleBlockType';
 export { toggleWrap } from './toggleWrap';
+export { toggleList } from './toggleList';

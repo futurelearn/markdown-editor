@@ -9,6 +9,7 @@ import {
 import { keymap } from 'prosemirror-keymap';
 import { baseKeymap, exitCode, setBlockType } from 'prosemirror-commands';
 import { history, undo, redo } from 'prosemirror-history';
+import { splitListItem } from 'prosemirror-schema-list';
 import {
   editorPlugin,
   pastePlugin,
@@ -31,6 +32,7 @@ const createEditorView = ({
   onError,
 }: CreateEditorViewOptionsInterface): EditorView => {
   const schema = setupSchema({ disabledMarks, disabledNodes });
+  const LIST_ITEM_TYPE = schema.nodes.list_item;
   const toggleBlockIfEmpty = (
     state: EditorState,
     dispatch: EditorView['dispatch']
@@ -53,6 +55,7 @@ const createEditorView = ({
     keymap({
       'Mod-z': undo,
       'Mod-y': redo,
+      Enter: splitListItem(LIST_ITEM_TYPE),
       Backspace: toggleBlockIfEmpty,
     }),
     keymap(baseKeymap),
