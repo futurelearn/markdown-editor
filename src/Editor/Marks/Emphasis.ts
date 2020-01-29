@@ -13,20 +13,20 @@ class Emphasis extends Mark {
 
   get shortcuts() {
     return {
-      'Mod-i': toggleMark(this._type),
-      'Mod-I': toggleMark(this._type),
+      'Mod-i': toggleMark(this.type),
+      'Mod-I': toggleMark(this.type),
     };
   }
 
   get rules() {
     return [
-      markInputRule(/(?:^|[^_])(_([^_]+)_)$/, this._type),
-      markInputRule(/(?:^|[^*])(\*([^*]+)\*)$/, this._type),
+      markInputRule(/(?:^|[^_])(_([^_]+)_)$/, this.type),
+      markInputRule(/(?:^|[^*])(\*([^*]+)\*)$/, this.type),
     ];
   }
 
   get command() {
-    return toggleMark(this._type);
+    return toggleMark(this.type);
   }
 }
 

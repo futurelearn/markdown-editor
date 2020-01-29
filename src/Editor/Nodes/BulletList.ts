@@ -12,11 +12,11 @@ class BulletList extends Node {
   }
 
   get command() {
-    return toggleList(this._type, this.listItemType);
+    return toggleList(this.type, this.listItemType);
   }
 
   get rules() {
-    return [wrappingInputRule(/^\s*([-+*])\s$/, this._type)];
+    return [wrappingInputRule(/^\s*([-+*])\s$/, this.type)];
   }
 }
 

@@ -1,4 +1,4 @@
-import { Schema } from 'prosemirror-model';
+import { Schema, MarkType, NodeType } from 'prosemirror-model';
 import { keymap } from 'prosemirror-keymap';
 import { inputRules, InputRule } from 'prosemirror-inputrules';
 
@@ -32,8 +32,16 @@ class BaseType {
     return [] as InputRule[];
   }
 
+  get type(): MarkType | NodeType | null {
+    return this._type;
+  }
+
+  protected get _type(): MarkType | NodeType | null {
+    return null;
+  }
+
   getPlugins() {
-    if (this.type) {
+    if (this._type) {
       return [keymap(this.shortcuts), inputRules({ rules: this.rules })];
     }
 
@@ -41,7 +49,7 @@ class BaseType {
   }
 
   getToolbarItem() {
-    if (this.type && this.inToolbar && this.command) {
+    if (this._type && this.inToolbar && this.command) {
       return {
         name: this.name,
         icon: this.icon,

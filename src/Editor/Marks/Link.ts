@@ -11,8 +11,8 @@ class Link extends Mark {
 
   get rules() {
     return [
-      linkInputRule(URL_REGEX, this._type),
-      markdownLinkInputRule(MARKDOWN_URL_REGX, this._type),
+      linkInputRule(URL_REGEX, this.type),
+      markdownLinkInputRule(MARKDOWN_URL_REGX, this.type),
     ];
   }
 

@@ -12,11 +12,11 @@ class CodeBlock extends Node {
   }
 
   get command() {
-    return toggleBlockType(this._type, this.paragraphType, this.schema);
+    return toggleBlockType(this.type, this.paragraphType, this.schema);
   }
 
   get rules() {
-    return [textblockTypeInputRule(/^(```|~~~)$/, this._type)];
+    return [textblockTypeInputRule(/^(```|~~~)$/, this.type)];
   }
 }
 

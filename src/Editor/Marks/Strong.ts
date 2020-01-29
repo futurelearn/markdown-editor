@@ -12,18 +12,18 @@ class Strong extends Mark {
   }
 
   get command() {
-    return toggleMark(this._type);
+    return toggleMark(this.type);
   }
 
   get shortcuts() {
     return {
-      'Mod-b': toggleMark(this._type),
-      'Mod-B': toggleMark(this._type),
+      'Mod-b': toggleMark(this.type),
+      'Mod-B': toggleMark(this.type),
     };
   }
 
   get rules() {
-    return [markInputRule(/(?:\*\*|__)([^*_]+)(?:\*\*|__)$/, this._type)];
+    return [markInputRule(/(?:\*\*|__)([^*_]+)(?:\*\*|__)$/, this.type)];
   }
 }
 

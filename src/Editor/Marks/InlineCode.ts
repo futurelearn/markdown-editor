@@ -13,16 +13,16 @@ class InlineCode extends Mark {
 
   get shortcuts() {
     return {
-      'Mod-`': toggleMark(this._type),
+      'Mod-`': toggleMark(this.type),
     };
   }
 
   get rules() {
-    return [markInputRule(/(?:`)([^`]+)(?:`)$/, this._type)];
+    return [markInputRule(/(?:`)([^`]+)(?:`)$/, this.type)];
   }
 
   get command() {
-    return toggleMark(this._type);
+    return toggleMark(this.type);
   }
 }
 

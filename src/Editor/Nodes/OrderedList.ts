@@ -12,14 +12,14 @@ class OrderedList extends Node {
   }
 
   get command() {
-    return toggleList(this._type, this.listItemType);
+    return toggleList(this.type, this.listItemType);
   }
 
   get rules() {
     return [
       wrappingInputRule(
         /^(\d+)\.\s$/,
-        this._type,
+        this.type,
         match => ({ order: +match[1] }),
         (match, node) => node.childCount + node.attrs.order === +match[1]
       ),

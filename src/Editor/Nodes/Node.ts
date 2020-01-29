@@ -2,20 +2,12 @@ import { NodeType } from 'prosemirror-model';
 import BaseType from '../BaseType';
 
 class Node extends BaseType {
-  get schemaSupportsNode() {
-    return this.schema.nodes[this.name];
-  }
-
-  get type() {
-    if (this.schemaSupportsNode) {
-      return this.schema.nodes[this.name];
-    }
-
-    return null;
+  get type(): NodeType {
+    return this._type as NodeType;
   }
 
   protected get _type() {
-    return this.type as NodeType;
+    return this.schema.nodes[this.name];
   }
 
   get paragraphType() {

@@ -2,20 +2,12 @@ import { MarkType } from 'prosemirror-model';
 import BaseType from '../BaseType';
 
 class Mark extends BaseType {
-  get schemaSupportsMark() {
-    return this.schema.marks[this.name];
-  }
-
-  get type() {
-    if (this.schemaSupportsMark) {
-      return this.schema.marks[this.name];
-    }
-
-    return null;
+  get type(): MarkType {
+    return this._type as MarkType;
   }
 
   protected get _type() {
-    return this.type as MarkType;
+    return this.schema.marks[this.name];
   }
 }
 

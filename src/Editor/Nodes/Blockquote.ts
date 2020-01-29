@@ -12,11 +12,11 @@ class Blockquote extends Node {
   }
 
   get command() {
-    return toggleWrap(this._type);
+    return toggleWrap(this.type);
   }
 
   get rules() {
-    return [wrappingInputRule(/^\s*>\s$/, this._type)];
+    return [wrappingInputRule(/^\s*>\s$/, this.type)];
   }
 }
 
