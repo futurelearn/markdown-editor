@@ -1,3 +1,4 @@
+import { paste } from './paste';
 // ***********************************************
 // This example commands.js shows you how to
 // create various custom commands and overwrite
@@ -25,6 +26,14 @@
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
 import 'cypress-file-upload';
+
+Cypress.Commands.add(
+  'paste',
+  {
+    prevSubject: true,
+  },
+  paste
+);
 
 Cypress.Commands.add(
   'keyboardShortcut',

@@ -11,6 +11,7 @@ import { baseKeymap, exitCode, setBlockType } from 'prosemirror-commands';
 import { history, undo, redo } from 'prosemirror-history';
 import {
   editorPlugin,
+  pastePlugin,
 } from './Plugins';
 
 const createEditorView = ({
@@ -33,6 +34,7 @@ const createEditorView = ({
       'Mod-y': redo,
     }),
     keymap(baseKeymap),
+    pastePlugin(schema, onError),
     editorPlugin(classes, placeholder),
   ];
 
