@@ -1,5 +1,8 @@
 export type OnChangeFn = (value: string) => any;
 
+type DisabledNode = 'code' | 'link';
+type DisabledMark = 'heading' | 'blockquote' | 'code_block' | 'bullet_list' | 'ordered_list' | 'image';
+
 export interface MarkdownEditorInterface {
   id: string;
   name: string;
@@ -10,13 +13,6 @@ export interface MarkdownEditorInterface {
   rows?: number;
   imageUploadEndpoint?: { url: string; csrfToken: string };
   onError?: any;
-  disabledNodes?: ('code' | 'link')[];
-  disabledMarks?: (
-    | 'heading'
-    | 'blockquote'
-    | 'code_block'
-    | 'bullet_list'
-    | 'ordered_list'
-    | 'image'
-  )[];
+  disabledNodes?: DisabledNode[];
+  disabledMarks?: DisabledMark[];
 }
