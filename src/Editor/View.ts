@@ -12,7 +12,9 @@ import { history, undo, redo } from 'prosemirror-history';
 import {
   editorPlugin,
   pastePlugin,
+  menuPlugin,
 } from './Plugins';
+import toolbarItems from '../Toolbar/menuItems';
 
 const createEditorView = ({
   node,
@@ -35,6 +37,7 @@ const createEditorView = ({
     }),
     keymap(baseKeymap),
     pastePlugin(schema, onError),
+    menuPlugin(toolbarItems(schema), onToolbarChange),
     editorPlugin(classes, placeholder),
   ];
 

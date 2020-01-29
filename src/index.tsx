@@ -2,6 +2,8 @@ import React, { FunctionComponent, useEffect, useRef, useState } from 'react';
 import { MarkdownEditorInterface } from './MarkdownEditorInterface';
 import { createEditorView } from './Editor';
 import { EditorView } from 'prosemirror-view';
+import Toolbar from './Toolbar';
+import { MenuItemInterface } from './Toolbar/MenuItemInterface';
 import classNames from 'classnames';
 
 const MarkDownEditor: FunctionComponent<MarkdownEditorInterface> = ({
@@ -45,6 +47,13 @@ const MarkDownEditor: FunctionComponent<MarkdownEditorInterface> = ({
     }
   };
 
+  const onToolbarClick = ({ command }: MenuItemInterface) => {
+    if (editor) {
+      editor.focus();
+      command(editor.state, editor.dispatch, editor);
+    }
+  };
+
   useEffect(() => {
     if (value !== markdownValue && editor) {
       editor.destroy();
@@ -58,6 +67,16 @@ const MarkDownEditor: FunctionComponent<MarkdownEditorInterface> = ({
 
   return (
     <>
+      {editor && (
+        <Toolbar
+          activeOptions={activeOptions}
+          onClick={onToolbarClick}
+          editor={editor}
+          disabledItems={[...disabledMarks, ...disabledNodes]}
+          imageUploadEndpoint={imageUploadEndpoint}
+          onError={onError}
+        />
+      )}
       <div
         id={id}
         className={classNames({ hasPlaceholder: !markdownValue.length })}
