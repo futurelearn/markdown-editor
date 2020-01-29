@@ -31,11 +31,29 @@ const createEditorView = ({
   onError,
 }: CreateEditorViewOptionsInterface): EditorView => {
   const schema = setupSchema({ disabledMarks, disabledNodes });
+  const toggleBlockIfEmpty = (
+    state: EditorState,
+    dispatch: EditorView['dispatch']
+  ) => {
+    let {
+      $from: { parent },
+    } = state.selection;
+    if ([schema.nodes.heading, schema.nodes.code_block].includes(parent.type)) {
+      if (!parent.textContent.length) {
+        setBlockType(schema.nodes.paragraph)(state, dispatch);
+        return true;
+      }
+    }
+
+    return false;
+  };
+
   const plugins = [
     history(),
     keymap({
       'Mod-z': undo,
       'Mod-y': redo,
+      Backspace: toggleBlockIfEmpty,
     }),
     keymap(baseKeymap),
     pastePlugin(schema, onError),

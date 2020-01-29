@@ -14,6 +14,7 @@ const App = () => {
         onError={setErrors}
         disabledMarks={['code', 'link']}
         disabledNodes={[
+          'heading',
           'blockquote',
         ]}
       />
