@@ -14,6 +14,8 @@ import {
   editorPlugin,
   pastePlugin,
   menuPlugin,
+  imageDropPlugin,
+  placeholderPlugin,
   highlightPlugin,
 } from './Plugins';
 import toolbarItems from '../Toolbar/menuItems';
@@ -72,6 +74,13 @@ const createEditorView = ({
 
   schema.nodes.code_block &&
     plugins.push(highlightPlugin({ name: schema.nodes.code_block.name }));
+
+  imageUploadEndpoint &&
+    schema.nodes.image &&
+    plugins.push(
+      placeholderPlugin,
+      imageDropPlugin(imageUploadEndpoint, onError)
+    );
 
   const editorView = new EditorView(node, {
     state: EditorState.create({

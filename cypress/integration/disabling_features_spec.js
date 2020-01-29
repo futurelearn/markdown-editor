@@ -56,4 +56,18 @@ describe('Disabling features', () => {
     cy.get('#editor .ProseMirror').paste('[link](http://nolongeralink.com)');
     cy.get('#editor a').should('not.exist');
   });
+
+  it('disables images', () => {
+    const fileName = 'image.jpg';
+    cy.fixture('imageUpload').as('imageJSON');
+
+    cy.get(`[data-item="image"]`).should('not.exist');
+    cy.fixture(fileName).then(fileContent => {
+      cy.get('.ProseMirror').upload(
+        { fileContent, fileName, mimeType: 'image/jpg' },
+        { subjectType: 'drag-n-drop' }
+      );
+    });
+    cy.get('#editor .image__placeholder').should('have.length', 0);
+  });
 });

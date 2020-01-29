@@ -11,6 +11,11 @@ const App = () => {
       <MarkdownEditor
         id="editor"
         name="editor"
+        imageUploadEndpoint={{
+          url:
+            '/images',
+          csrfToken: '123',
+        }}
         onError={setErrors}
       />
       {!!errors.length && <p>{errors}</p>}

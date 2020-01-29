@@ -3,6 +3,7 @@ import Bold from './Bold';
 import Code from './Code';
 import CodeBlock from './CodeBlock';
 import Heading from './Heading';
+import Image from './Image';
 import Italic from './Italic';
 import OrderedList from './OrderedList';
 import Quote from './Quote';
@@ -13,6 +14,7 @@ const Icons: IconsInterface = {
   Code,
   CodeBlock,
   Heading,
+  Image,
   Italic,
   OrderedList,
   Quote,

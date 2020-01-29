@@ -3,6 +3,7 @@ import Item from './Item';
 import { FunctionComponent } from 'react';
 import menuItems from './menuItems';
 import { ToolbarInterface } from './ToolbarInterface';
+import ImageUpload from './ImageUpload';
 
 const Toolbar: FunctionComponent<ToolbarInterface> = ({
   onClick,
@@ -29,6 +30,14 @@ const Toolbar: FunctionComponent<ToolbarInterface> = ({
           isActive={activeOptions.includes(item.name)}
         />
       ))}
+
+      {!disabledItems.includes('image') && (
+        <ImageUpload
+          editor={editor}
+          imageUploadEndpoint={imageUploadEndpoint}
+          onError={onError}
+        />
+      )}
     </div>
   );
 };

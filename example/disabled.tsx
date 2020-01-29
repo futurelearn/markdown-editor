@@ -19,6 +19,7 @@ const App = () => {
           'code_block',
           'bullet_list',
           'ordered_list',
+          'image',
         ]}
       />
       {!!errors.length && <p>{errors}</p>}
