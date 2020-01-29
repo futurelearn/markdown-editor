@@ -16,6 +16,7 @@ const App = () => {
         disabledNodes={[
           'heading',
           'blockquote',
+          'code_block',
           'bullet_list',
           'ordered_list',
         ]}

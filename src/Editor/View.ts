@@ -14,6 +14,7 @@ import {
   editorPlugin,
   pastePlugin,
   menuPlugin,
+  highlightPlugin,
 } from './Plugins';
 import toolbarItems from '../Toolbar/menuItems';
 import { plugins as markPlugins } from './Marks';
@@ -58,6 +59,9 @@ const createEditorView = ({
       Enter: splitListItem(LIST_ITEM_TYPE),
       Backspace: toggleBlockIfEmpty,
     }),
+    keymap({
+      'Shift-Enter': exitCode,
+    }),
     keymap(baseKeymap),
     pastePlugin(schema, onError),
     menuPlugin(toolbarItems(schema), onToolbarChange),
@@ -65,6 +69,9 @@ const createEditorView = ({
     ...nodePlugins(schema),
     editorPlugin(classes, placeholder),
   ];
+
+  schema.nodes.code_block &&
+    plugins.push(highlightPlugin({ name: schema.nodes.code_block.name }));
 
   const editorView = new EditorView(node, {
     state: EditorState.create({

@@ -17,6 +17,11 @@ describe('Disabling features', () => {
       text: '> Not a blockquote',
     },
     {
+      name: 'code_block',
+      tag: 'pre',
+      text: '```Not code',
+    },
+    {
       name: 'bullet_list',
       tag: 'ul',
       text: '* Not a list item',

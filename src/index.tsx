@@ -5,6 +5,7 @@ import { EditorView } from 'prosemirror-view';
 import Toolbar from './Toolbar';
 import { MenuItemInterface } from './Toolbar/MenuItemInterface';
 import classNames from 'classnames';
+import ContextualHelp from './ContextualHelp';
 
 const MarkDownEditor: FunctionComponent<MarkdownEditorInterface> = ({
   id,
@@ -82,6 +83,7 @@ const MarkDownEditor: FunctionComponent<MarkdownEditorInterface> = ({
         className={classNames({ hasPlaceholder: !markdownValue.length })}
         ref={editorRef}
       />
+      <ContextualHelp activeOptions={activeOptions} />
       <input
         type="hidden"
         value={markdownValue}
