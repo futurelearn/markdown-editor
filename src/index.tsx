@@ -4,6 +4,7 @@ import { createEditorView } from './Editor';
 import { EditorView } from 'prosemirror-view';
 import Toolbar from './Toolbar';
 import { MenuItemInterface } from './Toolbar/MenuItemInterface';
+import './index.scss';
 import classNames from 'classnames';
 import ContextualHelp from './ContextualHelp';
 
