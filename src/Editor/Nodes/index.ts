@@ -1,10 +1,11 @@
 import Blockquote from './Blockquote';
 import Heading from './Heading';
 import BulletList from './BulletList';
+import OrderedList from './OrderedList';
 import { flatMap, compact } from 'lodash';
 import { Schema } from 'prosemirror-model';
 
-const NODES = [Blockquote, Heading, BulletList];
+const NODES = [Blockquote, Heading, BulletList, OrderedList];
 
 export const plugins = (schema: Schema) => {
   return flatMap(NODES, Node => new Node(schema).getPlugins());

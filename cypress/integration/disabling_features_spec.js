@@ -22,6 +22,11 @@ describe('Disabling features', () => {
       text: '* Not a list item',
     },
     {
+      name: 'ordered_list',
+      tag: 'ol',
+      text: '1. Not a list item',
+    },
+    {
       name: 'code',
       tag: 'code',
       text: '`I am not code`',

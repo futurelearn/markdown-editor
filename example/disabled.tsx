@@ -17,6 +17,7 @@ const App = () => {
           'heading',
           'blockquote',
           'bullet_list',
+          'ordered_list',
         ]}
       />
       {!!errors.length && <p>{errors}</p>}
