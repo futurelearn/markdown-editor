@@ -4,7 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "parcel *.html"
+    "start": "parcel *.html",
+    "start:ci": "npm install && npm run start"
   },
   "dependencies": {
     "react-app-polyfill": "^1.0.0"

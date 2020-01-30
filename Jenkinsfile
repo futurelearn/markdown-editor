@@ -20,6 +20,7 @@ pipeline {
         // http://localhost:8080/pipeline-syntax/globals#env
         echo "Running build ${env.BUILD_ID} on ${env.JENKINS_URL}"
         sh 'npm ci'
+        sh 'npm run build'
       }
     }
     stage('lint') {
@@ -39,11 +40,11 @@ pipeline {
       steps {
         echo 'Releasing package'
         sh 'git checkout sam-jenkins'
+        sh 'npm version minor'
         sh 'npm run build'
         sh 'git add -f dist'
-        sh 'git commit -m "Prepare release"'
-        sh 'npm version minor'
-        sh 'git push --force-with-lease origin/sam-jenkins'
+        sh 'git commit --amend --no-edit'
+        sh 'git push --force-with-lease origin sam-jenkins'
       }
     }
   }
