@@ -34,16 +34,5 @@ pipeline {
         sh 'npm run test:ci'
       }
     }
-    stage('release') {
-      when { branch 'master' }
-      steps {
-        echo 'Releasing package'
-        sh 'npm run build'
-        sh 'git add -f dist'
-        sh 'git commit -m "Prepare release"'
-        sh 'npm version minor'
-        sh 'git push --force-with-lease origin/master'
-      }
-    }
   }
 }
