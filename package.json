@@ -10,9 +10,10 @@
     "start": "tsdx watch",
     "build": "tsdx build",
     "serve": "npm run --prefix example start",
+    "serve:ci": "npm run --prefix example start:ci",
     "cy:open": "cypress open",
     "cy:run": "cypress run --config video=false",
-    "test:ci": "start-server-and-test serve http://localhost:1234/index.html cy:run",
+    "test:ci": "start-server-and-test serve:ci http://localhost:1234/index.html cy:run",
     "test": "start-server-and-test serve http://localhost:1234/index.html cy:open",
     "lint": "tsdx lint src",
     "prepare": "tsdx build && npm --prefix example install"

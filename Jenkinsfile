@@ -20,6 +20,7 @@ pipeline {
         // http://localhost:8080/pipeline-syntax/globals#env
         echo "Running build ${env.BUILD_ID} on ${env.JENKINS_URL}"
         sh 'npm ci'
+        sh 'npm run build'
       }
     }
     stage('lint') {
