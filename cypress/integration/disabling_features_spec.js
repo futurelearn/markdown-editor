@@ -7,6 +7,11 @@ describe('Disabling features', () => {
 
   [
     {
+      name: 'blockquote',
+      tag: 'blockquote',
+      text: '> Not a blockquote',
+    },
+    {
       name: 'code',
       tag: 'code',
       text: '`I am not code`',

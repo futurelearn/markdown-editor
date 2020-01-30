@@ -13,6 +13,9 @@ const App = () => {
         name="editor"
         onError={setErrors}
         disabledMarks={['code', 'link']}
+        disabledNodes={[
+          'blockquote',
+        ]}
       />
       {!!errors.length && <p>{errors}</p>}
     </div>

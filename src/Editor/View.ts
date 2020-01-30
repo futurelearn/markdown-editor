@@ -16,6 +16,7 @@ import {
 } from './Plugins';
 import toolbarItems from '../Toolbar/menuItems';
 import { plugins as markPlugins } from './Marks';
+import { plugins as nodePlugins } from './Nodes';
 
 const createEditorView = ({
   node,
@@ -40,6 +41,7 @@ const createEditorView = ({
     pastePlugin(schema, onError),
     menuPlugin(toolbarItems(schema), onToolbarChange),
     ...markPlugins(schema),
+    ...nodePlugins(schema),
     editorPlugin(classes, placeholder),
   ];
 
