@@ -1,0 +1,230 @@
+@import '~prosemirror-view/style/prosemirror.css';
+@import '~highlight.js/styles/github.css';
+
+$black: #3a343a;
+$medium-grey: #727376;
+$soft-grey: #cacacc;
+$light-grey: #ededee;
+$gainsboro-grey: #fafafa;
+$blue: #2541fc;
+$pink: #de00a5;
+
+.CodeMirror {
+  height: auto;
+}
+
+.toolbar {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  background: #fff;
+  border-top: 1px solid $soft-grey;
+  border-left: 1px solid $soft-grey;
+  border-right: 1px solid $soft-grey;
+  display: flex;
+}
+
+.item {
+  background: none;
+  border: 0;
+  width: 16px;
+  height: 16px;
+  padding: 5px;
+  box-sizing: content-box;
+  margin-right: 5px;
+  cursor: pointer;
+  color: $black;
+
+  svg {
+    vertical-align: top;
+
+    * {
+      fill: currentColor;
+    }
+  }
+
+  &:hover {
+    color: $blue;
+  }
+
+  @media (hover: none) {
+    &:hover {
+      color: $black;
+    }
+  }
+}
+
+.item--active {
+  background: $light-grey;
+  color: $blue;
+}
+
+.fileUploadWrapper {
+  position: relative;
+  overflow: hidden;
+
+  input[type=file] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+  }
+}
+
+.rich-text-editor {
+  min-height: 156px;
+  max-height: 400px;
+  padding: 15px;
+  border: 1px solid $soft-grey;
+  background-color: white;
+  color: $black;
+  white-space: pre-wrap;
+  overflow: hidden;
+  overflow-y: scroll;
+
+  &:focus {
+    outline: none;
+    border: 1px solid $blue;
+  }
+
+  > :first-child {
+    margin-top: 0;
+  }
+}
+
+.hasPlaceholder {
+  .rich-text-editor:not(:focus):before {
+    content: attr(data-placeholder);
+    color: $medium-grey;
+    font-weight: normal;
+  }
+}
+
+.rich-text-editor {
+  font-size: 16px;
+  line-height: 24px;
+
+  > * {
+    margin-bottom: 0;
+  }
+
+  > * + * {
+    margin-top: 1em;
+  }
+
+  * > p {
+    &:first-of-type {
+      margin-top: 0;
+    }
+  }
+
+  p {
+    margin-top: 1em;
+    white-space: pre-line;
+    margin-bottom: 0;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-size: 20px;
+    line-height: 30px;
+  }
+
+  ul {
+    list-style: outside;
+  }
+
+  li {
+    margin-top: 0.5em;
+    margin-bottom: 0;
+
+    &:first-of-type {
+      margin-top: 0;
+    }
+  }
+
+  blockquote {
+    border-left: 4px solid $pink;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0.5em;
+  }
+
+  code {
+    padding: 4px;
+    color: gray;
+    border: gray;
+    background-color: $gainsboro-grey;
+    border: 1px solid $light-grey;
+    border-radius: 3px;
+  }
+
+  pre {
+    padding: 0px;
+
+    code {
+      display: block;
+      padding: 0.5em;
+    }
+  }
+
+  img {
+    display: block;
+    max-width: 400px;
+  }
+
+  .image__placeholder {
+    display: flex;
+    align-items: center;
+    width: 400px;
+    height: 300px;
+    position: relative;
+    background: $light-grey;
+  }
+
+  .loader,
+  .loader:before,
+  .loader:after {
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    animation-fill-mode: both;
+    animation: load 1.8s infinite ease-in-out;
+  }
+  .loader {
+    color: $pink;
+    font-size: 10px;
+    margin: -16px auto 0;
+    position: relative;
+    text-indent: -9999em;
+    transform: translateZ(0);
+    animation-delay: -0.16s;
+  }
+  .loader:before,
+  .loader:after {
+    content: '';
+    position: absolute;
+    top: 0;
+  }
+  .loader:before {
+    left: -20px;
+    animation-delay: -0.32s;
+  }
+  .loader:after {
+    left: 20px;
+  }
+  @keyframes load {
+    0%,
+    80%,
+    100% {
+      box-shadow: 0 16px 0 -8px;
+    }
+    40% {
+      box-shadow: 0 16px 0 0;
+    }
+  }
+}

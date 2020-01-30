@@ -7,7 +7,10 @@ pipeline {
       image 'cypress/base:10'
     }
   }
-
+  environment {
+    CI = 'true'
+    HOME = "${env.WORKSPACE}"
+  }
   stages {
     // first stage installs node dependencies and Cypress binary
     stage('build') {
@@ -18,19 +21,28 @@ pipeline {
         echo "Running build ${env.BUILD_ID} on ${env.JENKINS_URL}"
         sh 'npm ci'
       }
-    },
+    }
+    stage('lint') {
+      steps {
+        echo 'Running linter'
+        sh 'npm run lint'
+      }
+    }
     stage('test') {
       steps {
-        echo "Running cypress"
+        echo 'Running cypress'
         sh 'npm run test:ci'
       }
-    },
+    }
     stage('release') {
+      when { branch 'master' }
       steps {
+        echo 'Releasing package'
         sh 'npm run build'
         sh 'git add -f dist'
-        sh 'git commit -m "prepare release"'
-        sh 'git push -f origin release'
+        sh 'git commit -m "Prepare release"'
+        sh 'npm version minor'
+        sh 'git push --force-with-lease origin/master'
       }
     }
   }

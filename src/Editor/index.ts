@@ -1,0 +1,1 @@
+export { createEditorView } from './View';
