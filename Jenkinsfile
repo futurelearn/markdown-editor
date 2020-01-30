@@ -35,14 +35,15 @@ pipeline {
       }
     }
     stage('release') {
-      when { branch 'master' }
+      when { branch 'sam-jenkins' }
       steps {
         echo 'Releasing package'
+        sh 'git checkout sam-jenkins'
         sh 'npm run build'
         sh 'git add -f dist'
         sh 'git commit -m "Prepare release"'
         sh 'npm version minor'
-        sh 'git push --force-with-lease origin/master'
+        sh 'git push --force-with-lease origin/sam-jenkins'
       }
     }
   }
