@@ -12,7 +12,7 @@ const App = () => {
         id="editor"
         name="editor"
         onError={setErrors}
-        disabledMarks={['code']}
+        disabledMarks={['code', 'link']}
       />
       {!!errors.length && <p>{errors}</p>}
     </div>

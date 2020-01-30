@@ -24,4 +24,11 @@ describe('Disabling features', () => {
         .should('not.exist');
     });
   });
+
+  it('disables links', () => {
+    cy.get('#editor').type('http://nolongeralink.com');
+    cy.get('#editor a').should('not.exist');
+    cy.get('#editor .ProseMirror').paste('[link](http://nolongeralink.com)');
+    cy.get('#editor a').should('not.exist');
+  });
 });
