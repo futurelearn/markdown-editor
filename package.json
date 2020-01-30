@@ -33,7 +33,6 @@
   },
   "name": "@futurelearn/markdown-editor",
   "author": "Sam McTaggart",
-  "module": "dist/markdown-editor.esm.js",
   "devDependencies": {
     "@babel/core": "^7.7.7",
     "@types/classnames": "^2.2.9",
