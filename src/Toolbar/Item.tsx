@@ -1,9 +1,9 @@
 import React, { FunctionComponent } from 'react';
-import { ToolbarItemInterface } from './ToolbarItemInterface';
+import { ToolbarItem } from '../types';
 import classNames from 'classnames';
 import Icons from '../Icons';
 
-const Item: FunctionComponent<ToolbarItemInterface> = ({
+const Item: FunctionComponent<ToolbarItem> = ({
   icon,
   isActive,
   onClick,

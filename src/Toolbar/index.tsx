@@ -2,10 +2,10 @@ import React, { useMemo } from 'react';
 import Item from './Item';
 import { FunctionComponent } from 'react';
 import menuItems from './menuItems';
-import { ToolbarInterface } from './ToolbarInterface';
+import { Toolbar as ToolbarType } from '../types';
 import ImageUpload from './ImageUpload';
 
-const Toolbar: FunctionComponent<ToolbarInterface> = ({
+const Toolbar: FunctionComponent<ToolbarType> = ({
   onClick,
   activeOptions,
   editor,

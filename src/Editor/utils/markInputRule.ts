@@ -1,15 +1,10 @@
 import { InputRule } from 'prosemirror-inputrules';
-import { MarkType, Mark } from 'prosemirror-model';
+import { MarkType } from 'prosemirror-model';
 import { EditorState } from 'prosemirror-state';
-
-interface MarkBetweenInterface {
-  start: number;
-  end: number;
-  mark: Mark;
-}
+import { MarkBetween } from '../../types';
 
 const getMarksBetween = (start: number, end: number, state: EditorState) => {
-  let marks: MarkBetweenInterface[] = [];
+  let marks: MarkBetween[] = [];
 
   state.doc.nodesBetween(start, end, (node, pos) => {
     marks = [

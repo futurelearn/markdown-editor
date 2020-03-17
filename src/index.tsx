@@ -1,14 +1,13 @@
 import React, { FunctionComponent, useEffect, useRef, useState } from 'react';
-import { MarkdownEditorInterface } from './MarkdownEditorInterface';
+import { MarkDownEditor as MarkDownEditorType, MenuItem } from './types';
 import { createEditorView } from './Editor';
 import { EditorView } from 'prosemirror-view';
 import Toolbar from './Toolbar';
-import { MenuItemInterface } from './Toolbar/MenuItemInterface';
 import './index.scss';
 import classNames from 'classnames';
 import ContextualHelp from './ContextualHelp';
 
-const MarkDownEditor: FunctionComponent<MarkdownEditorInterface> = ({
+const MarkDownEditor: FunctionComponent<MarkDownEditorType> = ({
   id,
   name,
   onChange = () => {},
@@ -49,7 +48,7 @@ const MarkDownEditor: FunctionComponent<MarkdownEditorInterface> = ({
     }
   };
 
-  const onToolbarClick = ({ command }: MenuItemInterface) => {
+  const onToolbarClick = ({ command }: MenuItem) => {
     if (editor) {
       editor.focus();
       command(editor.state, editor.dispatch, editor);

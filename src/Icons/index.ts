@@ -1,4 +1,4 @@
-import { IconsInterface } from './IconsInterface';
+import { Icons as IconsType } from '../types';
 import Bold from './Bold';
 import Code from './Code';
 import CodeBlock from './CodeBlock';
@@ -9,7 +9,7 @@ import OrderedList from './OrderedList';
 import Quote from './Quote';
 import UnorderedList from './UnorderedList';
 
-const Icons: IconsInterface = {
+const Icons: IconsType = {
   Bold,
   Code,
   CodeBlock,

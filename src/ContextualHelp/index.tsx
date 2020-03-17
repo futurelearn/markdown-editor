@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
-import { ContextualHelpInterface } from './ContextualHelpInterface';
+import { ContextualHelp as ContextualHelpType } from '../types';
 
-const ContextualHelp: FunctionComponent<ContextualHelpInterface> = ({
+const ContextualHelp: FunctionComponent<ContextualHelpType> = ({
   activeOptions,
 }) => {
   const helpText: { [key: string]: string } = {
