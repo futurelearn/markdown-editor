@@ -2,7 +2,7 @@ import 'react-app-polyfill/ie11';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import MarkdownEditor from '../.';
-import '../dist/markdown-editor.esm.css';
+import '../dist/markdown-editor.cjs.production.min.css';
 
 const App = () => {
   const [errors, setErrors] = React.useState('');
