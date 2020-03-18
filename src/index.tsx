@@ -1,4 +1,10 @@
-import React, { FunctionComponent, useEffect, useRef, useState } from 'react';
+import React, {
+  FunctionComponent,
+  useEffect,
+  useRef,
+  useState,
+  useCallback,
+} from 'react';
 import { MarkDownEditor as MarkDownEditorType, MenuItem } from './types';
 import { createEditorView } from './Editor';
 import { EditorView } from 'prosemirror-view';
@@ -23,10 +29,18 @@ const MarkDownEditor: FunctionComponent<MarkDownEditorType> = ({
   const [editor, setEditor] = useState<EditorView | null>(null);
   const [markdownValue, setMarkdownValue] = useState<string>(value);
   const [activeOptions, setActiveOptions] = useState<string[]>([]);
+  const disabledItems = useRef([...disabledMarks, ...disabledNodes]);
+  const activeOptionsRef = useRef(activeOptions);
 
   const onInputChange = (md: string) => {
     setMarkdownValue(md);
     onChange(md);
+  };
+
+  const onToolbarChange = (options: string[]) => {
+    if (JSON.stringify(options) !== JSON.stringify(activeOptionsRef.current)) {
+      setActiveOptions(options);
+    }
   };
 
   const initEditor = () => {
@@ -37,7 +51,7 @@ const MarkDownEditor: FunctionComponent<MarkDownEditorType> = ({
         onChange: onInputChange,
         classes,
         placeholder,
-        onToolbarChange: options => setActiveOptions(options),
+        onToolbarChange: onToolbarChange,
         imageUploadEndpoint,
         onError: onError,
         disabledNodes,
@@ -48,12 +62,19 @@ const MarkDownEditor: FunctionComponent<MarkDownEditorType> = ({
     }
   };
 
-  const onToolbarClick = ({ command }: MenuItem) => {
-    if (editor) {
-      editor.focus();
-      command(editor.state, editor.dispatch, editor);
-    }
-  };
+  const onToolbarClick = useCallback(
+    ({ command }: MenuItem) => {
+      if (editor) {
+        editor.focus();
+        command(editor.state, editor.dispatch, editor);
+      }
+    },
+    [editor]
+  );
+
+  useEffect(() => {
+    activeOptionsRef.current = activeOptions;
+  }, [activeOptions]);
 
   useEffect(() => {
     if (value !== markdownValue && editor) {
@@ -73,7 +94,7 @@ const MarkDownEditor: FunctionComponent<MarkDownEditorType> = ({
           activeOptions={activeOptions}
           onClick={onToolbarClick}
           editor={editor}
-          disabledItems={[...disabledMarks, ...disabledNodes]}
+          disabledItems={disabledItems.current}
           imageUploadEndpoint={imageUploadEndpoint}
           onError={onError}
         />

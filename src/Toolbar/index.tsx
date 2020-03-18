@@ -24,9 +24,8 @@ const Toolbar: FunctionComponent<ToolbarType> = ({
       {menuItemsToRender.map(item => (
         <Item
           key={item.name}
-          icon={item.icon}
-          name={item.name}
-          onClick={() => onClick(item)}
+          item={item}
+          onClick={onClick}
           isActive={activeOptions.includes(item.name)}
         />
       ))}
@@ -42,4 +41,4 @@ const Toolbar: FunctionComponent<ToolbarType> = ({
   );
 };
 
-export default Toolbar;
+export default React.memo(Toolbar);

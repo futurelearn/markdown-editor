@@ -4,17 +4,17 @@ import classNames from 'classnames';
 import Icons from '../Icons';
 
 const Item: FunctionComponent<ToolbarItem> = ({
-  icon,
+  item,
+  item: { icon, name },
   isActive,
   onClick,
-  name,
 }) => {
   const Icon = Icons[icon];
   return (
     <button
       className={classNames('item', { 'item--active': isActive })}
       data-item={name}
-      onClick={onClick}
+      onClick={() => onClick(item)}
       type="button"
     >
       <Icon />

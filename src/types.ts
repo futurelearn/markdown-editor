@@ -53,10 +53,9 @@ export type Toolbar = {
 };
 
 export type ToolbarItem = {
-  name: string;
-  icon: string;
+  item: MenuItem;
   isActive: boolean;
-  onClick: () => any;
+  onClick: (option: MenuItem) => any;
 };
 
 export type CreateEditorViewOptions = {
