@@ -1,16 +1,16 @@
-import { MenuItemInterface } from '../../Toolbar/MenuItemInterface';
+import { MenuItem } from '../../types';
 import { MarkType, NodeType } from 'prosemirror-model';
 import { EditorView } from 'prosemirror-view';
 import { Plugin } from 'prosemirror-state';
 import { nodeIsActive, markIsActive } from '../utils';
 
 class Menu {
-  items: MenuItemInterface[];
+  items: MenuItem[];
   editorView: EditorView;
   onUpdate: (items: string[]) => any;
 
   constructor(
-    items: MenuItemInterface[],
+    items: MenuItem[],
     editorView: EditorView,
     onUpdate: (items: string[]) => any
   ) {
@@ -44,7 +44,7 @@ class Menu {
 }
 
 export const menuPlugin = (
-  items: MenuItemInterface[],
+  items: MenuItem[],
   onUpdate: (items: string[]) => any
 ) =>
   new Plugin({

@@ -1,4 +1,4 @@
-import { CreateEditorViewOptionsInterface } from './CreateEditorViewOptionsInterface';
+import { CreateEditorViewOptions } from '../types';
 import { EditorView } from 'prosemirror-view';
 import { EditorState, Transaction } from 'prosemirror-state';
 import {
@@ -33,7 +33,7 @@ const createEditorView = ({
   disabledMarks,
   disabledNodes,
   onError,
-}: CreateEditorViewOptionsInterface): EditorView => {
+}: CreateEditorViewOptions): EditorView => {
   const schema = setupSchema({ disabledMarks, disabledNodes });
   const LIST_ITEM_TYPE = schema.nodes.list_item;
   const toggleBlockIfEmpty = (

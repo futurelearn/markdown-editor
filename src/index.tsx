@@ -1,14 +1,19 @@
-import React, { FunctionComponent, useEffect, useRef, useState } from 'react';
-import { MarkdownEditorInterface } from './MarkdownEditorInterface';
+import React, {
+  FunctionComponent,
+  useEffect,
+  useRef,
+  useState,
+  useCallback,
+} from 'react';
+import { MarkDownEditor as MarkDownEditorType, MenuItem } from './types';
 import { createEditorView } from './Editor';
 import { EditorView } from 'prosemirror-view';
 import Toolbar from './Toolbar';
-import { MenuItemInterface } from './Toolbar/MenuItemInterface';
 import './index.scss';
 import classNames from 'classnames';
 import ContextualHelp from './ContextualHelp';
 
-const MarkDownEditor: FunctionComponent<MarkdownEditorInterface> = ({
+const MarkDownEditor: FunctionComponent<MarkDownEditorType> = ({
   id,
   name,
   onChange = () => {},
@@ -24,10 +29,18 @@ const MarkDownEditor: FunctionComponent<MarkdownEditorInterface> = ({
   const [editor, setEditor] = useState<EditorView | null>(null);
   const [markdownValue, setMarkdownValue] = useState<string>(value);
   const [activeOptions, setActiveOptions] = useState<string[]>([]);
+  const disabledItems = useRef([...disabledMarks, ...disabledNodes]);
+  const activeOptionsRef = useRef(activeOptions);
 
   const onInputChange = (md: string) => {
     setMarkdownValue(md);
     onChange(md);
+  };
+
+  const onToolbarChange = (options: string[]) => {
+    if (JSON.stringify(options) !== JSON.stringify(activeOptionsRef.current)) {
+      setActiveOptions(options);
+    }
   };
 
   const initEditor = () => {
@@ -38,7 +51,7 @@ const MarkDownEditor: FunctionComponent<MarkdownEditorInterface> = ({
         onChange: onInputChange,
         classes,
         placeholder,
-        onToolbarChange: options => setActiveOptions(options),
+        onToolbarChange: onToolbarChange,
         imageUploadEndpoint,
         onError: onError,
         disabledNodes,
@@ -49,12 +62,19 @@ const MarkDownEditor: FunctionComponent<MarkdownEditorInterface> = ({
     }
   };
 
-  const onToolbarClick = ({ command }: MenuItemInterface) => {
-    if (editor) {
-      editor.focus();
-      command(editor.state, editor.dispatch, editor);
-    }
-  };
+  const onToolbarClick = useCallback(
+    ({ command }: MenuItem) => {
+      if (editor) {
+        editor.focus();
+        command(editor.state, editor.dispatch, editor);
+      }
+    },
+    [editor]
+  );
+
+  useEffect(() => {
+    activeOptionsRef.current = activeOptions;
+  }, [activeOptions]);
 
   useEffect(() => {
     if (value !== markdownValue && editor) {
@@ -74,7 +94,7 @@ const MarkDownEditor: FunctionComponent<MarkdownEditorInterface> = ({
           activeOptions={activeOptions}
           onClick={onToolbarClick}
           editor={editor}
-          disabledItems={[...disabledMarks, ...disabledNodes]}
+          disabledItems={disabledItems.current}
           imageUploadEndpoint={imageUploadEndpoint}
           onError={onError}
         />

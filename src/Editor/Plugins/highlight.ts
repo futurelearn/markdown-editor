@@ -1,5 +1,6 @@
 import { Decoration, DecorationSet } from 'prosemirror-view';
-import { Node, NodeType } from 'prosemirror-model';
+import { Node } from 'prosemirror-model';
+import { Language } from '../../types';
 import low from 'lowlight/lib/core';
 import { Plugin, PluginKey } from 'prosemirror-state';
 import { findBlockNodes } from 'prosemirror-utils';
@@ -16,15 +17,9 @@ import css from 'highlight.js/lib/languages/css';
 //@ts-ignore
 import java from 'highlight.js/lib/languages/java';
 
-interface LanguageInterface {
-  language: string;
-  pos: number;
-  type: NodeType;
-}
-
 function getDecorations({ doc, name }: { doc: Node; name: string }) {
   const decorations: Decoration[] = [];
-  const languages: LanguageInterface[] = [];
+  const languages: Language[] = [];
   const blocks = findBlockNodes(doc).filter(
     item => item.node.type.name === name
   );
@@ -125,7 +120,7 @@ export const highlightPlugin = ({ name }: { name: string }) => {
             //@ts-ignore
             prevState.highlight$ &&
             //@ts-ignore
-            (prevState.highlight$.languages as LanguageInterface[]);
+            (prevState.highlight$.languages as Language[]);
           if (languages && languages.length) {
             languages.forEach(lang => {
               const transaction = view.state.tr.setNodeMarkup(

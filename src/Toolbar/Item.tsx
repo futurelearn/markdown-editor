@@ -1,20 +1,20 @@
 import React, { FunctionComponent } from 'react';
-import { ToolbarItemInterface } from './ToolbarItemInterface';
+import { ToolbarItem } from '../types';
 import classNames from 'classnames';
 import Icons from '../Icons';
 
-const Item: FunctionComponent<ToolbarItemInterface> = ({
-  icon,
+const Item: FunctionComponent<ToolbarItem> = ({
+  item,
+  item: { icon, name },
   isActive,
   onClick,
-  name,
 }) => {
   const Icon = Icons[icon];
   return (
     <button
       className={classNames('item', { 'item--active': isActive })}
       data-item={name}
-      onClick={onClick}
+      onClick={() => onClick(item)}
       type="button"
     >
       <Icon />
