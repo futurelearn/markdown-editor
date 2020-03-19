@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'react';
-import { ToolbarInterface } from './ToolbarInterface';
-declare const Toolbar: FunctionComponent<ToolbarInterface>;
-export default Toolbar;
+import React from 'react';
+import { Toolbar as ToolbarType } from '../types';
+declare const _default: React.NamedExoticComponent<ToolbarType>;
+export default _default;

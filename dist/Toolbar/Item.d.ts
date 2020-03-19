@@ -1,4 +1,4 @@
 import { FunctionComponent } from 'react';
-import { ToolbarItemInterface } from './ToolbarItemInterface';
-declare const Item: FunctionComponent<ToolbarItemInterface>;
+import { ToolbarItem } from '../types';
+declare const Item: FunctionComponent<ToolbarItem>;
 export default Item;

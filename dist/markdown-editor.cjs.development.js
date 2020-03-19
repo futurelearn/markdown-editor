@@ -75,9 +75,7 @@ var defaultMarkdownParser = function defaultMarkdownParser(schema) {
   return new prosemirrorMarkdown.MarkdownParser(schema, md, tokens);
 };
 
-var defaultMarkdownSerializer =
-/*#__PURE__*/
-function () {
+var defaultMarkdownSerializer = /*#__PURE__*/function () {
   prosemirrorMarkdown.defaultMarkdownSerializer.nodes.code_block = function (state, node) {
     state.write('~~~' + (node.attrs.params || '') + '\n');
     state.text(node.textContent, false);
@@ -309,9 +307,7 @@ var toggleList = function toggleList(listType, itemType) {
   };
 };
 
-var Menu =
-/*#__PURE__*/
-function () {
+var Menu = /*#__PURE__*/function () {
   function Menu(items, editorView, onUpdate) {
     this.items = items;
     this.editorView = editorView;
@@ -361,9 +357,7 @@ var menuPlugin = function menuPlugin(items, onUpdate) {
   });
 };
 
-var placeholderPlugin =
-/*#__PURE__*/
-new prosemirrorState.Plugin({
+var placeholderPlugin = /*#__PURE__*/new prosemirrorState.Plugin({
   state: {
     init: function init() {
       return prosemirrorView.DecorationSet.empty;
@@ -685,9 +679,7 @@ var highlightPlugin = function highlightPlugin(_ref2) {
   });
 };
 
-var BaseType =
-/*#__PURE__*/
-function () {
+var BaseType = /*#__PURE__*/function () {
   function BaseType(schema) {
     this.schema = schema;
   }
@@ -762,9 +754,7 @@ function () {
   return BaseType;
 }();
 
-var Mark =
-/*#__PURE__*/
-function (_BaseType) {
+var Mark = /*#__PURE__*/function (_BaseType) {
   _inheritsLoose(Mark, _BaseType);
 
   function Mark() {
@@ -786,9 +776,7 @@ function (_BaseType) {
   return Mark;
 }(BaseType);
 
-var Strong =
-/*#__PURE__*/
-function (_Mark) {
+var Strong = /*#__PURE__*/function (_Mark) {
   _inheritsLoose(Strong, _Mark);
 
   function Strong() {
@@ -828,9 +816,7 @@ function (_Mark) {
   return Strong;
 }(Mark);
 
-var Emphasis =
-/*#__PURE__*/
-function (_Mark) {
+var Emphasis = /*#__PURE__*/function (_Mark) {
   _inheritsLoose(Emphasis, _Mark);
 
   function Emphasis() {
@@ -870,9 +856,7 @@ function (_Mark) {
   return Emphasis;
 }(Mark);
 
-var InlineCode =
-/*#__PURE__*/
-function (_Mark) {
+var InlineCode = /*#__PURE__*/function (_Mark) {
   _inheritsLoose(InlineCode, _Mark);
 
   function InlineCode() {
@@ -914,9 +898,7 @@ function (_Mark) {
 var URL_REGEX = /(https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*))\s$/g;
 var MARKDOWN_URL_REGX = /\[(.+)\]\((https?[^ ]+)(?: "(.+)")?\)$/;
 
-var Link =
-/*#__PURE__*/
-function (_Mark) {
+var Link = /*#__PURE__*/function (_Mark) {
   _inheritsLoose(Link, _Mark);
 
   function Link() {
@@ -955,9 +937,7 @@ var toolbarItems = function toolbarItems(schema) {
   }));
 };
 
-var Node =
-/*#__PURE__*/
-function (_BaseType) {
+var Node = /*#__PURE__*/function (_BaseType) {
   _inheritsLoose(Node, _BaseType);
 
   function Node() {
@@ -989,9 +969,7 @@ function (_BaseType) {
   return Node;
 }(BaseType);
 
-var Blockquote =
-/*#__PURE__*/
-function (_Node) {
+var Blockquote = /*#__PURE__*/function (_Node) {
   _inheritsLoose(Blockquote, _Node);
 
   function Blockquote() {
@@ -1025,9 +1003,7 @@ function (_Node) {
 
 var LEVELS = [1, 2, 3, 4, 5, 6];
 
-var Heading =
-/*#__PURE__*/
-function (_Node) {
+var Heading = /*#__PURE__*/function (_Node) {
   _inheritsLoose(Heading, _Node);
 
   function Heading() {
@@ -1067,9 +1043,7 @@ function (_Node) {
   return Heading;
 }(Node);
 
-var BulletList =
-/*#__PURE__*/
-function (_Node) {
+var BulletList = /*#__PURE__*/function (_Node) {
   _inheritsLoose(BulletList, _Node);
 
   function BulletList() {
@@ -1101,9 +1075,7 @@ function (_Node) {
   return BulletList;
 }(Node);
 
-var OrderedList =
-/*#__PURE__*/
-function (_Node) {
+var OrderedList = /*#__PURE__*/function (_Node) {
   _inheritsLoose(OrderedList, _Node);
 
   function OrderedList() {
@@ -1141,9 +1113,7 @@ function (_Node) {
   return OrderedList;
 }(Node);
 
-var CodeBlock =
-/*#__PURE__*/
-function (_Node) {
+var CodeBlock = /*#__PURE__*/function (_Node) {
   _inheritsLoose(CodeBlock, _Node);
 
   function CodeBlock() {
@@ -1397,17 +1367,21 @@ var Icons = {
 };
 
 var Item = function Item(_ref) {
-  var icon = _ref.icon,
+  var item = _ref.item,
+      _ref$item = _ref.item,
+      icon = _ref$item.icon,
+      name = _ref$item.name,
       isActive = _ref.isActive,
-      onClick = _ref.onClick,
-      name = _ref.name;
+      _onClick = _ref.onClick;
   var Icon = Icons[icon];
   return React__default.createElement("button", {
     className: classNames('item', {
       'item--active': isActive
     }),
     "data-item": name,
-    onClick: onClick,
+    onClick: function onClick() {
+      return _onClick(item);
+    },
     type: "button"
   }, React__default.createElement(Icon, null));
 };
@@ -1442,7 +1416,7 @@ var ImageUpload = function ImageUpload(_ref) {
 };
 
 var Toolbar = function Toolbar(_ref) {
-  var _onClick = _ref.onClick,
+  var onClick = _ref.onClick,
       activeOptions = _ref.activeOptions,
       editor = _ref.editor,
       imageUploadEndpoint = _ref.imageUploadEndpoint,
@@ -1459,11 +1433,8 @@ var Toolbar = function Toolbar(_ref) {
   }, menuItemsToRender.map(function (item) {
     return React__default.createElement(Item, {
       key: item.name,
-      icon: item.icon,
-      name: item.name,
-      onClick: function onClick() {
-        return _onClick(item);
-      },
+      item: item,
+      onClick: onClick,
       isActive: activeOptions.includes(item.name)
     });
   }), !disabledItems.includes('image') && React__default.createElement(ImageUpload, {
@@ -1472,6 +1443,8 @@ var Toolbar = function Toolbar(_ref) {
     onError: onError
   }));
 };
+
+var Toolbar$1 = /*#__PURE__*/React__default.memo(Toolbar);
 
 var ContextualHelp = function ContextualHelp(_ref) {
   var activeOptions = _ref.activeOptions;
@@ -1515,9 +1488,18 @@ var MarkDownEditor = function MarkDownEditor(_ref) {
       activeOptions = _useState3[0],
       setActiveOptions = _useState3[1];
 
+  var disabledItems = React.useRef([].concat(disabledMarks, disabledNodes));
+  var activeOptionsRef = React.useRef(activeOptions);
+
   var onInputChange = function onInputChange(md) {
     setMarkdownValue(md);
     onChange(md);
+  };
+
+  var onToolbarChange = function onToolbarChange(options) {
+    if (JSON.stringify(options) !== JSON.stringify(activeOptionsRef.current)) {
+      setActiveOptions(options);
+    }
   };
 
   var initEditor = function initEditor() {
@@ -1528,9 +1510,7 @@ var MarkDownEditor = function MarkDownEditor(_ref) {
         onChange: onInputChange,
         classes: classes,
         placeholder: placeholder,
-        onToolbarChange: function onToolbarChange(options) {
-          return setActiveOptions(options);
-        },
+        onToolbarChange: onToolbarChange,
         imageUploadEndpoint: imageUploadEndpoint,
         onError: onError,
         disabledNodes: disabledNodes,
@@ -1540,15 +1520,17 @@ var MarkDownEditor = function MarkDownEditor(_ref) {
     }
   };
 
-  var onToolbarClick = function onToolbarClick(_ref2) {
+  var onToolbarClick = React.useCallback(function (_ref2) {
     var command = _ref2.command;
 
     if (editor) {
       editor.focus();
       command(editor.state, editor.dispatch, editor);
     }
-  };
-
+  }, [editor]);
+  React.useEffect(function () {
+    activeOptionsRef.current = activeOptions;
+  }, [activeOptions]);
   React.useEffect(function () {
     if (value !== markdownValue && editor) {
       editor.destroy();
@@ -1560,11 +1542,11 @@ var MarkDownEditor = function MarkDownEditor(_ref) {
     initEditor();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  return React__default.createElement(React__default.Fragment, null, editor && React__default.createElement(Toolbar, {
+  return React__default.createElement(React__default.Fragment, null, editor && React__default.createElement(Toolbar$1, {
     activeOptions: activeOptions,
     onClick: onToolbarClick,
     editor: editor,
-    disabledItems: [].concat(disabledMarks, disabledNodes),
+    disabledItems: disabledItems.current,
     imageUploadEndpoint: imageUploadEndpoint,
     onError: onError
   }), React__default.createElement("div", {

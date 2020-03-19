@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react';
-import { MarkdownEditorInterface } from './MarkdownEditorInterface';
+import { MarkDownEditor as MarkDownEditorType } from './types';
 import './index.scss';
-declare const MarkDownEditor: FunctionComponent<MarkdownEditorInterface>;
+declare const MarkDownEditor: FunctionComponent<MarkDownEditorType>;
 export default MarkDownEditor;

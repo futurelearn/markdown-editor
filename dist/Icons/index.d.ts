@@ -1,3 +1,3 @@
-import { IconsInterface } from './IconsInterface';
-declare const Icons: IconsInterface;
+import { Icons as IconsType } from '../types';
+declare const Icons: IconsType;
 export default Icons;

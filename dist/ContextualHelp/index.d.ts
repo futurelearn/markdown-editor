@@ -1,4 +1,4 @@
 import { FunctionComponent } from 'react';
-import { ContextualHelpInterface } from './ContextualHelpInterface';
-declare const ContextualHelp: FunctionComponent<ContextualHelpInterface>;
+import { ContextualHelp as ContextualHelpType } from '../types';
+declare const ContextualHelp: FunctionComponent<ContextualHelpType>;
 export default ContextualHelp;
