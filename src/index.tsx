@@ -19,7 +19,7 @@ const MarkDownEditor: FunctionComponent<MarkDownEditorType> = ({
   onChange = () => {},
   value = '',
   placeholder = 'Enter text',
-  classes = 'rich-text-editor',
+  classes = '',
   imageUploadEndpoint,
   onError = () => {},
   disabledMarks = [],
