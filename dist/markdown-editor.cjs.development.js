@@ -87,11 +87,12 @@ var defaultMarkdownSerializer = /*#__PURE__*/function () {
   return prosemirrorMarkdown.defaultMarkdownSerializer;
 }();
 
+var EDITOR_CLASS = 'rich-text-editor';
 var editorPlugin = function editorPlugin(classes, placeholder) {
   return new prosemirrorState.Plugin({
     props: {
       attributes: {
-        "class": classes,
+        "class": classes.length ? EDITOR_CLASS + " " + classes : EDITOR_CLASS,
         'data-placeholder': placeholder
       }
     }
@@ -1405,14 +1406,14 @@ var ImageUpload = function ImageUpload(_ref) {
 
   return React__default.createElement("div", {
     className: "fileUploadWrapper"
-  }, React__default.createElement("button", {
-    "data-item": "image",
-    className: "item"
-  }, React__default.createElement(Icons.Image, null)), React__default.createElement("input", {
+  }, React__default.createElement("input", {
     type: "file",
     accept: ".jpg,.jpeg,.png,.gif",
     onChange: onImageUpload
-  }));
+  }), React__default.createElement("button", {
+    "data-item": "image",
+    className: "item fileUploadWrapper--button"
+  }, React__default.createElement(Icons.Image, null)));
 };
 
 var Toolbar = function Toolbar(_ref) {
@@ -1466,7 +1467,7 @@ var MarkDownEditor = function MarkDownEditor(_ref) {
       _ref$placeholder = _ref.placeholder,
       placeholder = _ref$placeholder === void 0 ? 'Enter text' : _ref$placeholder,
       _ref$classes = _ref.classes,
-      classes = _ref$classes === void 0 ? 'rich-text-editor' : _ref$classes,
+      classes = _ref$classes === void 0 ? '' : _ref$classes,
       imageUploadEndpoint = _ref.imageUploadEndpoint,
       _ref$onError = _ref.onError,
       onError = _ref$onError === void 0 ? function () {} : _ref$onError,

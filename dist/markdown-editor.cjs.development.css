@@ -164,11 +164,18 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 .fileUploadWrapper {
   position: relative;
   overflow: hidden; }
-  .fileUploadWrapper input[type=file] {
+  .fileUploadWrapper input[type=file],
+  .fileUploadWrapper input[type=file]::-webkit-file-upload-button {
     position: absolute;
     top: 0;
     left: 0;
-    opacity: 0; }
+    opacity: 0;
+    width: 32px;
+    height: 32px;
+    cursor: pointer; }
+
+.fileUploadWrapper input:hover + .item {
+  color: #2541fc; }
 
 .rich-text-editor {
   min-height: 156px;
@@ -179,7 +186,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   color: #3a343a;
   white-space: pre-wrap;
   overflow: hidden;
-  overflow-y: scroll; }
+  overflow-y: auto; }
   .rich-text-editor:focus {
     outline: none;
     border: 1px solid #2541fc; }
