@@ -33,14 +33,14 @@ const ImageUpload = ({
 
   return (
     <div className="fileUploadWrapper">
-      <button data-item="image" className="item">
-        <Icons.Image />
-      </button>
       <input
         type="file"
         accept=".jpg,.jpeg,.png,.gif"
         onChange={onImageUpload}
       />
+      <button data-item="image" className="item fileUploadWrapper--button">
+        <Icons.Image />
+      </button>
     </div>
   );
 };

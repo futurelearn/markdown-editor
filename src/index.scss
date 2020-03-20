@@ -63,12 +63,20 @@ $pink: #de00a5;
   position: relative;
   overflow: hidden;
 
-  input[type=file] {
+  input[type=file], 
+  input[type=file]::-webkit-file-upload-button {
     position: absolute;
     top: 0;
     left: 0;
     opacity: 0;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
   }
+}
+
+.fileUploadWrapper input:hover + .item {
+  color: $blue;
 }
 
 .rich-text-editor {
@@ -80,7 +88,7 @@ $pink: #de00a5;
   color: $black;
   white-space: pre-wrap;
   overflow: hidden;
-  overflow-y: scroll;
+  overflow-y: auto;
 
   &:focus {
     outline: none;
