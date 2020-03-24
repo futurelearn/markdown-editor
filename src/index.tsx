@@ -24,6 +24,7 @@ const MarkDownEditor: FunctionComponent<MarkDownEditorType> = ({
   onError = () => {},
   disabledMarks = [],
   disabledNodes = [],
+  inputRef,
 }) => {
   const editorRef = useRef<HTMLDivElement>(null);
   const [editor, setEditor] = useState<EditorView | null>(null);
@@ -75,6 +76,12 @@ const MarkDownEditor: FunctionComponent<MarkDownEditorType> = ({
   useEffect(() => {
     activeOptionsRef.current = activeOptions;
   }, [activeOptions]);
+
+  useEffect(() => {
+    if (inputRef) {
+      inputRef.current = editor;
+    }
+  }, [editor]);
 
   useEffect(() => {
     if (value !== markdownValue && editor) {

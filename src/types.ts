@@ -30,6 +30,7 @@ export type MarkDownEditor = {
   onError?: any;
   disabledNodes?: DisabledNode[];
   disabledMarks?: DisabledMark[];
+  inputRef?: React.MutableRefObject<EditorView | null>;
 };
 
 export type MenuItem = {
