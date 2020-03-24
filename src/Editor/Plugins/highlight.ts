@@ -88,8 +88,9 @@ export const highlightPlugin = ({ name }: { name: string }) => {
   low.registerLanguage('r', r);
   low.registerLanguage('css', css);
   low.registerLanguage('java', java);
+  const key = new PluginKey('highlight');
   return new Plugin({
-    key: new PluginKey('highlight'),
+    key,
     state: {
       init: (_, { doc }) => getDecorations({ doc, name }),
       apply: (transaction, decorationSet, oldState, state) => {
@@ -116,20 +117,21 @@ export const highlightPlugin = ({ name }: { name: string }) => {
     view: _view => {
       return {
         update: (view, prevState) => {
-          const languages =
-            //@ts-ignore
-            prevState.highlight$ &&
-            //@ts-ignore
-            (prevState.highlight$.languages as Language[]);
-          if (languages && languages.length) {
-            languages.forEach(lang => {
-              const transaction = view.state.tr.setNodeMarkup(
-                lang.pos,
-                lang.type,
-                { params: lang.language }
-              );
-              view.dispatch(transaction);
-            });
+          const highlight = key.get(prevState);
+          if (highlight) {
+            const { languages } = highlight.getState(prevState) as {
+              languages: Language[];
+            };
+            if (languages && languages.length) {
+              languages.forEach(lang => {
+                const transaction = view.state.tr.setNodeMarkup(
+                  lang.pos,
+                  lang.type,
+                  { params: lang.language }
+                );
+                view.dispatch(transaction);
+              });
+            }
           }
         },
       };
