@@ -1474,7 +1474,8 @@ var MarkDownEditor = function MarkDownEditor(_ref) {
       _ref$disabledMarks = _ref.disabledMarks,
       disabledMarks = _ref$disabledMarks === void 0 ? [] : _ref$disabledMarks,
       _ref$disabledNodes = _ref.disabledNodes,
-      disabledNodes = _ref$disabledNodes === void 0 ? [] : _ref$disabledNodes;
+      disabledNodes = _ref$disabledNodes === void 0 ? [] : _ref$disabledNodes,
+      inputRef = _ref.inputRef;
   var editorRef = React.useRef(null);
 
   var _useState = React.useState(null),
@@ -1532,6 +1533,11 @@ var MarkDownEditor = function MarkDownEditor(_ref) {
   React.useEffect(function () {
     activeOptionsRef.current = activeOptions;
   }, [activeOptions]);
+  React.useEffect(function () {
+    if (inputRef) {
+      inputRef.current = editor;
+    }
+  }, [editor]);
   React.useEffect(function () {
     if (value !== markdownValue && editor) {
       editor.destroy();
