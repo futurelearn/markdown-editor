@@ -628,8 +628,9 @@ var highlightPlugin = function highlightPlugin(_ref2) {
   low.registerLanguage('r', r);
   low.registerLanguage('css', css);
   low.registerLanguage('java', java);
+  var key = new prosemirrorState.PluginKey('highlight');
   return new prosemirrorState.Plugin({
-    key: new prosemirrorState.PluginKey('highlight'),
+    key: key,
     state: {
       init: function init(_, _ref3) {
         var doc = _ref3.doc;
@@ -662,17 +663,20 @@ var highlightPlugin = function highlightPlugin(_ref2) {
     view: function view(_view) {
       return {
         update: function update(view, prevState) {
-          var languages = //@ts-ignore
-          prevState.highlight$ && //@ts-ignore
-          prevState.highlight$.languages;
+          var highlight = key.get(prevState);
 
-          if (languages && languages.length) {
-            languages.forEach(function (lang) {
-              var transaction = view.state.tr.setNodeMarkup(lang.pos, lang.type, {
-                params: lang.language
+          if (highlight) {
+            var _highlight$getState = highlight.getState(prevState),
+                languages = _highlight$getState.languages;
+
+            if (languages && languages.length) {
+              languages.forEach(function (lang) {
+                var transaction = view.state.tr.setNodeMarkup(lang.pos, lang.type, {
+                  params: lang.language
+                });
+                view.dispatch(transaction);
               });
-              view.dispatch(transaction);
-            });
+            }
           }
         }
       };
