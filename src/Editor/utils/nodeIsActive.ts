@@ -20,7 +20,7 @@ export const nodeIsActive = function(
   }
 
   return {
-    isActive: node.node.hasMarkup(type, attrs),
+    isActive: node.node.hasMarkup(type),
     node: node.node,
   };
 };
