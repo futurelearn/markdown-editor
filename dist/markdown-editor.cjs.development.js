@@ -227,26 +227,21 @@ var nodeIsActive = function nodeIsActive(state, type, attrs) {
   }
 
   return {
-    isActive: node.node.hasMarkup(type, attrs),
+    isActive: node.node.hasMarkup(type),
     node: node.node
   };
 };
 
-var toggleBlockType = function toggleBlockType(type, toggletype, schema, attrs) {
+var toggleBlockType = function toggleBlockType(type, toggletype, attrs) {
   if (attrs === void 0) {
     attrs = {};
   }
 
   return function (state, dispatch) {
     var _nodeIsActive = nodeIsActive(state, type, attrs),
-        isActive = _nodeIsActive.isActive,
-        node = _nodeIsActive.node;
+        isActive = _nodeIsActive.isActive;
 
     if (isActive) {
-      if (type === schema.nodes.code_block && (node === null || node === void 0 ? void 0 : node.textContent.length)) {
-        return prosemirrorCommands.exitCode(state, dispatch);
-      }
-
       return prosemirrorCommands.setBlockType(toggletype)(state, dispatch);
     }
 
