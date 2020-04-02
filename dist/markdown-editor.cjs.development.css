@@ -244,7 +244,6 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       display: block;
       padding: 0.5em; }
   .rich-text-editor img {
-    display: block;
     max-width: 400px; }
   .rich-text-editor .image__placeholder {
     display: flex;

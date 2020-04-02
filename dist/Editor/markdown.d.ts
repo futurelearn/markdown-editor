@@ -9,7 +9,7 @@ declare module 'prosemirror-markdown' {
 declare const setupSchema: ({ disabledMarks, disabledNodes, }: {
     disabledMarks?: string[] | undefined;
     disabledNodes?: string[] | undefined;
-}) => MarkdownSchema;
+}) => any;
 declare const defaultMarkdownParser: (schema: MarkdownSchema) => any;
 declare const defaultMarkdownSerializer: import("prosemirror-markdown").MarkdownSerializer<any>;
 export { setupSchema, defaultMarkdownParser, defaultMarkdownSerializer };

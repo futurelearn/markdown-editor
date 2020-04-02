@@ -9,13 +9,13 @@ var React__default = _interopDefault(React);
 var prosemirrorView = require('prosemirror-view');
 var prosemirrorState = require('prosemirror-state');
 var prosemirrorMarkdown = require('prosemirror-markdown');
+var prosemirrorModel = require('prosemirror-model');
 var lodash = require('lodash');
 var markdownit = _interopDefault(require('markdown-it/lib'));
 var prosemirrorKeymap = require('prosemirror-keymap');
 var prosemirrorCommands = require('prosemirror-commands');
 var prosemirrorHistory = require('prosemirror-history');
 var prosemirrorSchemaList = require('prosemirror-schema-list');
-var prosemirrorModel = require('prosemirror-model');
 var prosemirrorInputrules = require('prosemirror-inputrules');
 var prosemirrorUtils = require('prosemirror-utils');
 var low = _interopDefault(require('lowlight/lib/core'));
@@ -25,6 +25,277 @@ var r = _interopDefault(require('highlight.js/lib/languages/r'));
 var css = _interopDefault(require('highlight.js/lib/languages/css'));
 var java = _interopDefault(require('highlight.js/lib/languages/java'));
 var classNames = _interopDefault(require('classnames'));
+
+var initialSchema = /*#__PURE__*/new prosemirrorModel.Schema({
+  nodes: {
+    doc: {
+      content: 'block+'
+    },
+    paragraph: {
+      content: 'inline*',
+      group: 'block',
+      parseDOM: [{
+        tag: 'p'
+      }],
+      toDOM: function toDOM() {
+        return ['p', 0];
+      }
+    },
+    blockquote: {
+      content: 'block+',
+      group: 'block',
+      parseDOM: [{
+        tag: 'blockquote'
+      }],
+      toDOM: function toDOM() {
+        return ['blockquote', 0];
+      }
+    },
+    horizontal_rule: {
+      group: 'block',
+      parseDOM: [{
+        tag: 'hr'
+      }],
+      toDOM: function toDOM() {
+        return ['div', ['hr']];
+      }
+    },
+    heading: {
+      attrs: {
+        level: {
+          "default": 1
+        }
+      },
+      content: 'inline*',
+      group: 'block',
+      defining: true,
+      parseDOM: [{
+        tag: 'h1',
+        attrs: {
+          level: 1
+        }
+      }, {
+        tag: 'h2',
+        attrs: {
+          level: 2
+        }
+      }, {
+        tag: 'h3',
+        attrs: {
+          level: 3
+        }
+      }, {
+        tag: 'h4',
+        attrs: {
+          level: 4
+        }
+      }, {
+        tag: 'h5',
+        attrs: {
+          level: 5
+        }
+      }, {
+        tag: 'h6',
+        attrs: {
+          level: 6
+        }
+      }],
+      toDOM: function toDOM(node) {
+        return ['h' + node.attrs.level, 0];
+      }
+    },
+    code_block: {
+      content: 'text*',
+      group: 'block',
+      code: true,
+      isolating: true,
+      defining: true,
+      marks: '',
+      attrs: {
+        params: {
+          "default": ''
+        }
+      },
+      parseDOM: [{
+        tag: 'pre',
+        preserveWhitespace: 'full',
+        getAttrs: function getAttrs(node) {
+          return {
+            params: node.getAttribute('data-params') || ''
+          };
+        }
+      }],
+      toDOM: function toDOM(node) {
+        return ['pre', node.attrs.params ? {
+          'data-params': node.attrs.params
+        } : {}, ['code', 0]];
+      }
+    },
+    ordered_list: {
+      content: 'list_item+',
+      group: 'block',
+      attrs: {
+        order: {
+          "default": 1
+        },
+        tight: {
+          "default": false
+        }
+      },
+      parseDOM: [{
+        tag: 'ol',
+        getAttrs: function getAttrs(dom) {
+          return {
+            order: dom.hasAttribute('start') ? +dom.getAttribute('start') : 1,
+            tight: dom.hasAttribute('data-tight')
+          };
+        }
+      }],
+      toDOM: function toDOM(node) {
+        return ['ol', {
+          start: node.attrs.order == 1 ? null : node.attrs.order,
+          'data-tight': node.attrs.tight ? 'true' : null
+        }, 0];
+      }
+    },
+    bullet_list: {
+      content: 'list_item+',
+      group: 'block',
+      attrs: {
+        tight: {
+          "default": false
+        }
+      },
+      parseDOM: [{
+        tag: 'ul',
+        getAttrs: function getAttrs(dom) {
+          return {
+            tight: dom.hasAttribute('data-tight')
+          };
+        }
+      }],
+      toDOM: function toDOM(node) {
+        return ['ul', {
+          'data-tight': node.attrs.tight ? 'true' : null
+        }, 0];
+      }
+    },
+    list_item: {
+      content: 'paragraph block*',
+      defining: true,
+      parseDOM: [{
+        tag: 'li'
+      }],
+      toDOM: function toDOM() {
+        return ['li', 0];
+      }
+    },
+    text: {
+      group: 'inline'
+    },
+    image: {
+      attrs: {
+        src: {},
+        alt: {
+          "default": null
+        },
+        title: {
+          "default": null
+        }
+      },
+      group: 'block',
+      draggable: true,
+      parseDOM: [{
+        tag: 'p[data-img]',
+        getAttrs: function getAttrs(dom) {
+          var image = dom.querySelector('img[src]');
+          return {
+            src: image.getAttribute('src'),
+            title: image.getAttribute('title'),
+            alt: image.getAttribute('alt')
+          };
+        }
+      }],
+      toDOM: function toDOM(node) {
+        return ['p', {
+          'data-img': true
+        }, ['img', node.attrs]];
+      }
+    },
+    hard_break: {
+      inline: true,
+      group: 'inline',
+      selectable: false,
+      parseDOM: [{
+        tag: 'br'
+      }],
+      toDOM: function toDOM() {
+        return ['br'];
+      }
+    }
+  },
+  marks: {
+    em: {
+      parseDOM: [{
+        tag: 'i'
+      }, {
+        tag: 'em'
+      }, {
+        style: 'font-style',
+        getAttrs: function getAttrs(value) {
+          return value == 'italic' && null;
+        }
+      }],
+      toDOM: function toDOM() {
+        return ['em'];
+      }
+    },
+    strong: {
+      parseDOM: [{
+        tag: 'b'
+      }, {
+        tag: 'strong'
+      }, {
+        style: 'font-weight',
+        getAttrs: function getAttrs(value) {
+          return /^(bold(er)?|[5-9]\d{2,})$/.test(value) && null;
+        }
+      }],
+      toDOM: function toDOM() {
+        return ['strong'];
+      }
+    },
+    link: {
+      attrs: {
+        href: {},
+        title: {
+          "default": null
+        }
+      },
+      inclusive: false,
+      parseDOM: [{
+        tag: 'a[href]',
+        getAttrs: function getAttrs(dom) {
+          return {
+            href: dom.getAttribute('href'),
+            title: dom.getAttribute('title')
+          };
+        }
+      }],
+      toDOM: function toDOM(node) {
+        return ['a', node.attrs];
+      }
+    },
+    code: {
+      parseDOM: [{
+        tag: 'code'
+      }],
+      toDOM: function toDOM() {
+        return ['code'];
+      }
+    }
+  }
+});
 
 var IGNORED_NODES = ['horizontal_rule', 'hard_break'];
 var IGNORED_TOKENS = ['hr', 'hardbreak'];
@@ -49,16 +320,13 @@ var setupSchema = function setupSchema(_ref) {
 
   if (disabledNodes.includes('code_block')) {
     disabledNodes.push('fence');
-  } else {
-    //@ts-ignore
-    prosemirrorMarkdown.schema.nodes.code_block.isolating = true;
   }
 
-  prosemirrorMarkdown.schema.nodes = lodash.omit(prosemirrorMarkdown.schema.nodes, [].concat(IGNORED_NODES, disabledNodes));
-  prosemirrorMarkdown.schema.marks = lodash.omit(prosemirrorMarkdown.schema.marks, disabledMarks);
-  prosemirrorMarkdown.schema.disabledNodes = disabledNodes;
-  prosemirrorMarkdown.schema.disabledMarks = disabledMarks;
-  return prosemirrorMarkdown.schema;
+  initialSchema.nodes = lodash.omit(initialSchema.nodes, [].concat(IGNORED_NODES, disabledNodes));
+  initialSchema.marks = lodash.omit(initialSchema.marks, disabledMarks);
+  initialSchema.disabledNodes = disabledNodes;
+  initialSchema.disabledMarks = disabledMarks;
+  return initialSchema;
 };
 
 var defaultMarkdownParser = function defaultMarkdownParser(schema) {
@@ -72,7 +340,20 @@ var defaultMarkdownParser = function defaultMarkdownParser(schema) {
   }));
   md.disable(tokensToDisable); //@ts-ignore
 
-  return new prosemirrorMarkdown.MarkdownParser(schema, md, tokens);
+  var parser = new prosemirrorMarkdown.MarkdownParser(schema, md, tokens);
+
+  parser.tokenHandlers.paragraph_close = function (state) {
+    if (state.marks.length) {
+      state.marks = prosemirrorModel.Mark.none;
+    }
+
+    var info = state.stack.pop();
+    var node = info.type.create(info.attrs, info.content, state.marks);
+    state.push(node);
+    return node;
+  };
+
+  return parser;
 };
 
 var defaultMarkdownSerializer = /*#__PURE__*/function () {
