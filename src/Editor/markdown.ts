@@ -1,10 +1,11 @@
 import {
-  schema as initialSchema,
   defaultMarkdownParser as initialDefaultMarkdownParser,
   defaultMarkdownSerializer as initialDefaultMarkdownSerializer,
   MarkdownParser,
 } from 'prosemirror-markdown';
-import { Schema } from 'prosemirror-model';
+//@ts-ignore
+import initialSchema from './schema';
+import { Schema, Mark } from 'prosemirror-model';
 import { omit, compact } from 'lodash';
 import markdownit from 'markdown-it/lib';
 
@@ -41,9 +42,6 @@ const setupSchema = ({
 }) => {
   if (disabledNodes.includes('code_block')) {
     disabledNodes.push('fence');
-  } else {
-    //@ts-ignore
-    initialSchema.nodes.code_block.isolating = true;
   }
 
   initialSchema.nodes = omit(initialSchema.nodes, [
@@ -54,6 +52,7 @@ const setupSchema = ({
 
   initialSchema.disabledNodes = disabledNodes;
   initialSchema.disabledMarks = disabledMarks;
+
   return initialSchema;
 };
 
@@ -72,7 +71,16 @@ const defaultMarkdownParser = (schema: MarkdownSchema) => {
   md.disable(tokensToDisable);
 
   //@ts-ignore
-  return new MarkdownParser(schema, md, tokens);
+  const parser =  new MarkdownParser(schema, md, tokens);
+  parser.tokenHandlers.paragraph_close = (state: any) => {
+    if (state.marks.length) { state.marks = Mark.none; }
+    const info = state.stack.pop();
+    const node = info.type.create(info.attrs, info.content, state.marks);
+    state.push(node);
+    return node;
+  }
+
+  return parser;
 };
 
 const defaultMarkdownSerializer = (() => {
