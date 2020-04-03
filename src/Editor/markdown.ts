@@ -1,5 +1,4 @@
 import {
-  schema as initialSchema,
   defaultMarkdownParser as initialDefaultMarkdownParser,
   defaultMarkdownSerializer as initialDefaultMarkdownSerializer,
   MarkdownParser,
@@ -7,6 +6,10 @@ import {
 import { Schema } from 'prosemirror-model';
 import { omit, compact } from 'lodash';
 import markdownit from 'markdown-it/lib';
+//@ts-ignore
+import initialSchema from './schema';
+//@ts-ignore
+import blockImagePlugin from 'markdown-it-block-image';
 
 export interface MarkdownSchema extends Schema {
   disabledNodes: string[];
@@ -66,10 +69,13 @@ const defaultMarkdownParser = (schema: MarkdownSchema) => {
   const tokens = omit(initialDefaultMarkdownParser.tokens, disabledTokens);
 
   const md = markdownit('commonmark', { html: false });
+  md.use(blockImagePlugin, { outputContainer: 'p' });
   const tokensToDisable = compact(
     disabledTokens.map(t => MARKDOWN_IT_RULES[t])
   );
   md.disable(tokensToDisable);
+  //@ts-ignore
+  tokens['block-image'] = {block: "block-image"};
 
   //@ts-ignore
   return new MarkdownParser(schema, md, tokens);
@@ -83,6 +89,7 @@ const defaultMarkdownSerializer = (() => {
     state.write('~~~');
     state.closeBlock(node);
   };
+  initialDefaultMarkdownSerializer.nodes['block-image'] = () => {};
   return initialDefaultMarkdownSerializer;
 })();
 

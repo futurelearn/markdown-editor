@@ -46,9 +46,11 @@ export const fileUpload = (
         jsonBody = { errors: 'Sorry something went wrong' };
       }
       if ([200, 201].includes(xhr.status)) {
-        const node = schema.nodes.image.create({
-          src: jsonBody.data.url,
-        });
+        const node = schema.nodes['block-image'].create({}, [
+          schema.nodes.image.create({
+            src: jsonBody.data.url,
+          }),
+        ]);
 
         transaction = view.state.tr
           .replaceWith(pos, pos, node)
