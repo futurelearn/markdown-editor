@@ -81,7 +81,7 @@ const MarkDownEditor: FunctionComponent<MarkDownEditorType> = ({
     if (inputRef) {
       inputRef.current = editor;
     }
-  }, [editor]);
+  }, [editor, inputRef]);
 
   useEffect(() => {
     if (value !== markdownValue && editor) {
