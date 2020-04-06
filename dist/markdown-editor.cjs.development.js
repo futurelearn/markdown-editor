@@ -208,44 +208,28 @@ var markIsActive = function markIsActive(state, type) {
   return !!state.doc.rangeHasMark(from, to, type);
 };
 
-var nodeIsActive = function nodeIsActive(state, type, attrs) {
-  if (attrs === void 0) {
-    attrs = {};
-  }
-
+var nodeIsActive = function nodeIsActive(state, type) {
   var predicate = function predicate(node) {
     return node.type === type;
   };
 
   var node = prosemirrorUtils.findSelectedNodeOfType(type)(state.selection) || prosemirrorUtils.findParentNode(predicate)(state.selection);
-
-  if (!Object.keys(attrs).length || !node) {
-    return {
-      isActive: !!node,
-      node: node === null || node === void 0 ? void 0 : node.node
-    };
-  }
-
   return {
-    isActive: node.node.hasMarkup(type),
-    node: node.node
+    isActive: !!node,
+    node: node === null || node === void 0 ? void 0 : node.node
   };
 };
 
-var toggleBlockType = function toggleBlockType(type, toggletype, attrs) {
-  if (attrs === void 0) {
-    attrs = {};
-  }
-
+var toggleBlockType = function toggleBlockType(type, toggletype) {
   return function (state, dispatch) {
-    var _nodeIsActive = nodeIsActive(state, type, attrs),
+    var _nodeIsActive = nodeIsActive(state, type),
         isActive = _nodeIsActive.isActive;
 
     if (isActive) {
       return prosemirrorCommands.setBlockType(toggletype)(state, dispatch);
     }
 
-    return prosemirrorCommands.setBlockType(type, attrs)(state, dispatch);
+    return prosemirrorCommands.setBlockType(type)(state, dispatch);
   };
 };
 
@@ -399,7 +383,7 @@ var findPlaceholder = function findPlaceholder(state, id) {
 
 var fileUpload = function fileUpload(view, images, endpoint, position, onError) {
   var id = {};
-  var confirmResult = window.confirm('I am authorised to use this content');
+  var confirmResult = window.confirm(endpoint.alertMessage || 'I am authorised to use this content');
 
   if (!confirmResult) {
     return false;
@@ -661,7 +645,7 @@ var highlightPlugin = function highlightPlugin(_ref2) {
           var highlight = key.get(prevState);
 
           if (highlight) {
-            var _highlight$getState = highlight.getState(prevState),
+            var _highlight$getState = highlight.getState(view.state),
                 languages = _highlight$getState.languages;
 
             if (languages && languages.length) {
@@ -1023,7 +1007,7 @@ var Heading = /*#__PURE__*/function (_Node) {
   }, {
     key: "command",
     get: function get() {
-      return toggleBlockType(this.type, this.paragraphType, this.schema);
+      return toggleBlockType(this.type, this.paragraphType);
     }
   }, {
     key: "rules",
@@ -1133,7 +1117,7 @@ var CodeBlock = /*#__PURE__*/function (_Node) {
   }, {
     key: "command",
     get: function get() {
-      return toggleBlockType(this.type, this.paragraphType, this.schema);
+      return toggleBlockType(this.type, this.paragraphType);
     }
   }, {
     key: "rules",
@@ -1536,7 +1520,7 @@ var MarkDownEditor = function MarkDownEditor(_ref) {
     if (inputRef) {
       inputRef.current = editor;
     }
-  }, [editor]);
+  }, [editor, inputRef]);
   React.useEffect(function () {
     if (value !== markdownValue && editor) {
       editor.destroy();

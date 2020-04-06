@@ -1,5 +1,3 @@
 import { EditorView } from 'prosemirror-view';
-export declare const fileUpload: (view: EditorView<any>, images: File[], endpoint: {
-    url: string;
-    csrfToken: string;
-}, position: number, onError: (errors: string) => any) => boolean;
+import { ImageUploadEndpoint } from 'types';
+export declare const fileUpload: (view: EditorView<any>, images: File[], endpoint: ImageUploadEndpoint, position: number, onError: (errors: string) => any) => boolean;
