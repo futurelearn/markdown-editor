@@ -119,7 +119,7 @@ export const highlightPlugin = ({ name }: { name: string }) => {
         update: (view, prevState) => {
           const highlight = key.get(prevState);
           if (highlight) {
-            const { languages } = highlight.getState(prevState) as {
+            const { languages } = highlight.getState(view.state) as {
               languages: Language[];
             };
             if (languages && languages.length) {

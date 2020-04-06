@@ -1,9 +1,10 @@
 import { Plugin } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 import { fileUpload } from './fileUpload';
+import { ImageUploadEndpoint } from 'types';
 
 export const imageDropPlugin = (
-  endpoint: { url: string; csrfToken: string },
+  endpoint: ImageUploadEndpoint,
   onError: (errors: string) => any
 ) =>
   new Plugin({
