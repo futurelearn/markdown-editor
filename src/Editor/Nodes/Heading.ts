@@ -14,7 +14,7 @@ class Heading extends Node {
   }
 
   get command() {
-    return toggleBlockType(this.type, this.paragraphType, this.schema);
+    return toggleBlockType(this.type, this.paragraphType);
   }
 
   get rules() {
