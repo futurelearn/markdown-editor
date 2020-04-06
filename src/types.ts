@@ -18,6 +18,12 @@ type DisabledMark =
   | 'ordered_list'
   | 'image';
 
+export type ImageUploadEndpoint = {
+  url: string;
+  csrfToken: string;
+  alertMessage?: string;
+};
+
 export type MarkDownEditor = {
   id: string;
   name: string;
@@ -26,7 +32,7 @@ export type MarkDownEditor = {
   placeholder?: string;
   classes?: string;
   rows?: number;
-  imageUploadEndpoint?: { url: string; csrfToken: string };
+  imageUploadEndpoint?: ImageUploadEndpoint;
   onError?: any;
   disabledNodes?: DisabledNode[];
   disabledMarks?: DisabledMark[];

@@ -1,15 +1,18 @@
 import { placeholderPlugin, findPlaceholder } from './placeholder';
 import { EditorView } from 'prosemirror-view';
+import { ImageUploadEndpoint } from 'types';
 
 export const fileUpload = (
   view: EditorView,
   images: File[],
-  endpoint: { url: string; csrfToken: string },
+  endpoint: ImageUploadEndpoint,
   position: number,
   onError: (errors: string) => any
 ): boolean => {
   let id = {};
-  const confirmResult = window.confirm('I am authorised to use this content');
+  const confirmResult = window.confirm(
+    endpoint.alertMessage || 'I am authorised to use this content'
+  );
   if (!confirmResult) {
     return false;
   }
