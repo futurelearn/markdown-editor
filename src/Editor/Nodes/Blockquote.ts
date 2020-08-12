@@ -11,6 +11,10 @@ class Blockquote extends Node {
     return 'Quote';
   }
 
+  get title() {
+    return 'block quote';
+  }
+
   get command() {
     return toggleWrap(this.type);
   }

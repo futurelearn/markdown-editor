@@ -5,7 +5,7 @@ import Icons from '../Icons';
 
 const Item: FunctionComponent<ToolbarItem> = ({
   item,
-  item: { icon, name },
+  item: { icon, name, title },
   isActive,
   onClick,
 }) => {
@@ -15,6 +15,7 @@ const Item: FunctionComponent<ToolbarItem> = ({
       className={classNames('item', { 'item--active': isActive })}
       data-item={name}
       onClick={() => onClick(item)}
+      title={title}
       type="button"
     >
       <Icon />

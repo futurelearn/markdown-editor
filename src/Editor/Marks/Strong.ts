@@ -11,6 +11,10 @@ class Strong extends Mark {
     return 'Bold';
   }
 
+  get title() {
+    return 'bold';
+  }
+
   get command() {
     return toggleMark(this.type);
   }

@@ -11,6 +11,10 @@ class BulletList extends Node {
     return 'UnorderedList';
   }
 
+  get title() {
+    return 'bullet list';
+  }
+
   get command() {
     return toggleList(this.type, this.listItemType);
   }

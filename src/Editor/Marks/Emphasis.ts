@@ -11,6 +11,10 @@ class Emphasis extends Mark {
     return 'Italic';
   }
 
+  get title() {
+    return 'italic';
+  }
+
   get shortcuts() {
     return {
       'Mod-i': toggleMark(this.type),

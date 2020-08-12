@@ -11,6 +11,10 @@ class InlineCode extends Mark {
     return 'Code';
   }
 
+  get title() {
+    return 'code';
+  }
+
   get shortcuts() {
     return {
       'Mod-`': toggleMark(this.type),

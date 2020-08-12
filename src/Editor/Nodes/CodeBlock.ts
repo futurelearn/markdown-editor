@@ -11,6 +11,10 @@ class CodeBlock extends Node {
     return 'CodeBlock';
   }
 
+  get title() {
+    return 'code block';
+  }
+
   get command() {
     return toggleBlockType(this.type, this.paragraphType);
   }

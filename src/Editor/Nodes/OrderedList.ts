@@ -11,6 +11,10 @@ class OrderedList extends Node {
     return 'OrderedList';
   }
 
+  get title() {
+    return 'ordered list';
+  }
+
   get command() {
     return toggleList(this.type, this.listItemType);
   }

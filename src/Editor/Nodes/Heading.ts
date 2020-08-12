@@ -13,7 +13,12 @@ class Heading extends Node {
     return 'Heading';
   }
 
+  get title() {
+    return 'heading';
+  }
+
   get command() {
+    console.log(this.type);
     return toggleBlockType(this.type, this.paragraphType);
   }
 
