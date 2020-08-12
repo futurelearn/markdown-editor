@@ -132,13 +132,33 @@ $pink: #de00a5;
     margin-bottom: 0;
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
+  h1 {
+    font-size: 40px;
+    line-height: 30px;
+  }
+
+  h2 {
+    font-size: 30px;
+    line-height: 30px;
+  }
+
+  h3 {
+    font-size: 23.4px;
+    line-height: 30px;
+  }
+
+  h4 {
     font-size: 20px;
+    line-height: 30px;
+  }
+
+  h5 {
+    font-size: 16.6px;
+    line-height: 30px;
+  }
+
+  h6 {
+    font-size: 13.4px;
     line-height: 30px;
   }
 
