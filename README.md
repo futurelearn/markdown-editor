@@ -17,11 +17,18 @@ It currently supports:
 * Unordered lists
 * Ordered lists
 
+For more information see [Rich Text Editor](https://app.gitbook.com/@futurelearn/s/engineering-docs/the-futurelearn-app/frontend/javascript/rich-text-editor) in the engineering docs.
+
 ### Developing
+Run `npm install` to install the dependencies.
 
-To start developing run `npm run start` which will start compiling the assets in watch mode. `cd` in example and run `npm install` to install the dependencies of the example app which the test suite will be run again. To run the test suite then run `npm run test` which will start up the example app and cypress.
+`cd` into `example` and run `npm install` to install the dependencies of the example app which the test suite will be run against.
 
-To view the editor you can visit `http://localhost:1234`.
+You also need to install `parcel` globally: `npm install -g parcel`
+
+To run the test suite run `npm run test` which will start up both the example app and cypress. To view the editor you can visit `http://localhost:1234/index.html`.
+
+When you start developing, run `npm run start` which will start compiling the assets in watch mode.
 
 ### Supporting new elements
 
@@ -30,3 +37,10 @@ The markdown renderer relies on [markdown-it](https://github.com/markdown-it/mar
 Prosemirror relies on it's [schema](https://github.com/ProseMirror/prosemirror-markdown/blob/master/src/schema.js) for the elements that it supports, so if we wanted to add new elements to it we'd need to customise the schema. You can find an example [here](https://prosemirror.net/examples/dino/) of adding custom elements to the schema.
 
 When adding a new element, you need to add an icon (if it's going to be present in the toolbar) and then define a class for the node or mark that looks something like [this](https://github.com/futurelearn/markdown-editor/blob/master/src/Editor/Marks/Strong.ts). If you then add it to the [elements here](https://github.com/futurelearn/markdown-editor/blob/master/src/Editor/Marks/index.ts#L8) then the editor and the toolbar will both know about it.
+
+### Releasing
+In order to prepare a new release, the current process is (there is almost definitely a better way to handle this)
+
+1. Create a new version using `npm version patch`
+2. `run npm run build` to build the dist and push up to master
+3. You can then update it within the main app by using `yarn add ssh:git@github.com:futurelearn/markdown-editor.git`
