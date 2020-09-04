@@ -7,6 +7,10 @@ class OrderedList extends Node {
     return 'ordered_list';
   }
 
+  get label() {
+    return 'Toggle ordered list';
+  }
+
   get icon() {
     return 'OrderedList';
   }

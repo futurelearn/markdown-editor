@@ -23,4 +23,8 @@ describe('Ordered list', () => {
     cy.get('#editor ol').should('have.length', 1);
     cy.get('#editor li').should('have.length', 1);
   });
+
+  it('should have aria label', () => {
+    cy.get('button[data-item="ordered_list"]').should('have.attr', 'aria-label', 'Toggle ordered list');
+  });
 });

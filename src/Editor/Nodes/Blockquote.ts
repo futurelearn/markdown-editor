@@ -7,6 +7,10 @@ class Blockquote extends Node {
     return 'blockquote';
   }
 
+  get label() {
+    return 'Toggle block quote';
+  }
+
   get icon() {
     return 'Quote';
   }

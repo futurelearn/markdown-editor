@@ -9,6 +9,10 @@ class Heading extends Node {
     return 'heading';
   }
 
+  get label() {
+    return 'Toggle heading';
+  }
+
   get icon() {
     return 'Heading';
   }

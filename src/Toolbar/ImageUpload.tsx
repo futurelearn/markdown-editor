@@ -38,7 +38,12 @@ const ImageUpload = ({
         accept=".jpg,.jpeg,.png,.gif"
         onChange={onImageUpload}
       />
-      <button data-item="image" className="item fileUploadWrapper--button">
+      <button
+        data-item="image"
+        className="item fileUploadWrapper--button"
+        aria-label="Upload image"
+        title="Upload image"
+      >
         <Icons.Image />
       </button>
     </div>

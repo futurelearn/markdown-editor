@@ -7,6 +7,10 @@ class Emphasis extends Mark {
     return 'em';
   }
 
+  get label() {
+    return 'Toggle emphasis';
+  }
+
   get icon() {
     return 'Italic';
   }

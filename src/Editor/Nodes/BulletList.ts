@@ -7,6 +7,10 @@ class BulletList extends Node {
     return 'bullet_list';
   }
 
+  get label() {
+    return 'Toggle bullet list';
+  }
+
   get icon() {
     return 'UnorderedList';
   }

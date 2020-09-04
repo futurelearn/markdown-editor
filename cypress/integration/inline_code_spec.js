@@ -22,4 +22,8 @@ describe('Inline code', () => {
     cy.get('#editor').type('I like code text');
     cy.get('#editor code').should('have.text', 'I like code text');
   });
+
+  it('should have aria label', () => {
+    cy.get('button[data-item="code"]').should('have.attr', 'aria-label', 'Toggle code');
+  });
 });

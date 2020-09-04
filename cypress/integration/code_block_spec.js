@@ -62,4 +62,8 @@ describe('Code block', () => {
       '~~~javascript\nvar name = "code";\n~~~\n\n~~~python\ndef name:\n    code\n~~~'
     );
   });
+
+  it('should have aria label', () => {
+    cy.get('button[data-item="code_block"]').should('have.attr', 'aria-label', 'Toggle code block');
+  });
 });

@@ -42,6 +42,7 @@ export type MarkDownEditor = {
 export type MenuItem = {
   name: string;
   icon: string;
+  label: string;
   command: (
     state: EditorState,
     dispatch: EditorView['dispatch'],

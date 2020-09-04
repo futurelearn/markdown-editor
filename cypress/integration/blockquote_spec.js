@@ -25,4 +25,8 @@ describe('Blockquote', () => {
     cy.get('#editor').type('I like quoted text');
     cy.get('#editor blockquote').should('have.text', 'I like quoted text');
   });
+
+  it('should have aria label', () => {
+    cy.get('button[data-item="blockquote"]').should('have.attr', 'aria-label', 'Toggle block quote');
+  });
 });
