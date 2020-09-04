@@ -12,7 +12,7 @@ describe('Strong', () => {
         .type('I like strong text');
       cy.get('#editor strong').should('have.text', 'I like strong text');
       cy.get('input[type="hidden"]').should('have.value', '**I like strong text**');
-    });  
+    });
   })
 
   it('supports strong markdown keyboard shortcut', () => {
@@ -31,5 +31,9 @@ describe('Strong', () => {
     cy.get('#editor').type('I like strong text');
     cy.get('#editor strong').should('have.text', 'I like strong text');
     cy.get('input[type="hidden"]').should('have.value', '**I like strong text**');
+  });
+
+  it('should have aria label', () => {
+    cy.get('button[data-item="strong"]').should('have.attr', 'aria-label', 'Toggle bold');
   });
 });

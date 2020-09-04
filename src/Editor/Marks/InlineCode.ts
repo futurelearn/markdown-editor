@@ -7,6 +7,10 @@ class InlineCode extends Mark {
     return 'code';
   }
 
+  get label() {
+    return 'Toggle code';
+  }
+
   get icon() {
     return 'Code';
   }

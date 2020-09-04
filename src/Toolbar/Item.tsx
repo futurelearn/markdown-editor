@@ -16,6 +16,8 @@ const Item: FunctionComponent<ToolbarItem> = ({
       data-item={name}
       onClick={() => onClick(item)}
       type="button"
+      aria-label={item.label}
+      title={item.label}
     >
       <Icon />
     </button>

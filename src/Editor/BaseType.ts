@@ -12,6 +12,10 @@ class BaseType {
     return '';
   }
 
+  get label() {
+    return '';
+  }
+
   get icon() {
     return '';
   }
@@ -55,6 +59,7 @@ class BaseType {
         icon: this.icon,
         command: this.command,
         type: this.type,
+        label: this.label,
       };
     }
 

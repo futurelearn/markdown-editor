@@ -75,4 +75,8 @@ describe('Image', () => {
       cy.get('#editor placeholder').should('not.exist');
     });
   });
+
+  it('should have aria label', () => {
+    cy.get('button[data-item="image"]').should('have.attr', 'aria-label', 'Upload image');
+  });
 });

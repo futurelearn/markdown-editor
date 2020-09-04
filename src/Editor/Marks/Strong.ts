@@ -7,6 +7,10 @@ class Strong extends Mark {
     return 'strong';
   }
 
+  get label() {
+    return 'Toggle bold';
+  }
+
   get icon() {
     return 'Bold';
   }

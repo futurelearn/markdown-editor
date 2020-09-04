@@ -23,4 +23,8 @@ describe('Bullet list', () => {
     cy.get('#editor ul').should('have.length', 1);
     cy.get('#editor li').should('have.length', 1);
   });
+
+  it('should have aria label', () => {
+    cy.get('button[data-item="bullet_list"]').should('have.attr', 'aria-label', 'Toggle bullet list');
+  });
 });

@@ -7,6 +7,10 @@ class CodeBlock extends Node {
     return 'code_block';
   }
 
+  get label() {
+    return 'Toggle code block';
+  }
+
   get icon() {
     return 'CodeBlock';
   }

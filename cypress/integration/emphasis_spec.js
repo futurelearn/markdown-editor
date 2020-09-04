@@ -26,4 +26,8 @@ describe('Emphasis', () => {
     cy.get('#editor').type('I like italic text');
     cy.get('#editor em').should('have.text', 'I like italic text');
   });
+
+  it('should have aria label', () => {
+    cy.get('button[data-item="em"]').should('have.attr', 'aria-label', 'Toggle emphasis');
+  });
 });

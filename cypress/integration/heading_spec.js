@@ -29,4 +29,8 @@ describe('Heading', () => {
     cy.get('#editor').type('I like heading text');
     cy.get('#editor h1').should('have.text', 'I like heading text');
   });
+
+  it('should have aria label', () => {
+    cy.get('button[data-item="heading"]').should('have.attr', 'aria-label', 'Toggle heading');
+  });
 });
