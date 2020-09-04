@@ -686,7 +686,8 @@ var BaseType = /*#__PURE__*/function () {
         name: this.name,
         icon: this.icon,
         command: this.command,
-        type: this.type
+        type: this.type,
+        label: this.label
       };
     }
 
@@ -695,6 +696,11 @@ var BaseType = /*#__PURE__*/function () {
 
   _createClass(BaseType, [{
     key: "name",
+    get: function get() {
+      return '';
+    }
+  }, {
+    key: "label",
     get: function get() {
       return '';
     }
@@ -773,6 +779,11 @@ var Strong = /*#__PURE__*/function (_Mark) {
       return 'strong';
     }
   }, {
+    key: "label",
+    get: function get() {
+      return 'Toggle bold';
+    }
+  }, {
     key: "icon",
     get: function get() {
       return 'Bold';
@@ -813,6 +824,11 @@ var Emphasis = /*#__PURE__*/function (_Mark) {
       return 'em';
     }
   }, {
+    key: "label",
+    get: function get() {
+      return 'Toggle emphasis';
+    }
+  }, {
     key: "icon",
     get: function get() {
       return 'Italic';
@@ -851,6 +867,11 @@ var InlineCode = /*#__PURE__*/function (_Mark) {
     key: "name",
     get: function get() {
       return 'code';
+    }
+  }, {
+    key: "label",
+    get: function get() {
+      return 'Toggle code';
     }
   }, {
     key: "icon",
@@ -966,6 +987,11 @@ var Blockquote = /*#__PURE__*/function (_Node) {
       return 'blockquote';
     }
   }, {
+    key: "label",
+    get: function get() {
+      return 'Toggle block quote';
+    }
+  }, {
     key: "icon",
     get: function get() {
       return 'Quote';
@@ -998,6 +1024,11 @@ var Heading = /*#__PURE__*/function (_Node) {
     key: "name",
     get: function get() {
       return 'heading';
+    }
+  }, {
+    key: "label",
+    get: function get() {
+      return 'Toggle heading';
     }
   }, {
     key: "icon",
@@ -1040,6 +1071,11 @@ var BulletList = /*#__PURE__*/function (_Node) {
       return 'bullet_list';
     }
   }, {
+    key: "label",
+    get: function get() {
+      return 'Toggle bullet list';
+    }
+  }, {
     key: "icon",
     get: function get() {
       return 'UnorderedList';
@@ -1070,6 +1106,11 @@ var OrderedList = /*#__PURE__*/function (_Node) {
     key: "name",
     get: function get() {
       return 'ordered_list';
+    }
+  }, {
+    key: "label",
+    get: function get() {
+      return 'Toggle ordered list';
     }
   }, {
     key: "icon",
@@ -1108,6 +1149,11 @@ var CodeBlock = /*#__PURE__*/function (_Node) {
     key: "name",
     get: function get() {
       return 'code_block';
+    }
+  }, {
+    key: "label",
+    get: function get() {
+      return 'Toggle code block';
     }
   }, {
     key: "icon",
@@ -1366,7 +1412,9 @@ var Item = function Item(_ref) {
     onClick: function onClick() {
       return _onClick(item);
     },
-    type: "button"
+    type: "button",
+    "aria-label": item.label,
+    title: item.label
   }, React__default.createElement(Icon, null));
 };
 
@@ -1395,7 +1443,9 @@ var ImageUpload = function ImageUpload(_ref) {
     onChange: onImageUpload
   }), React__default.createElement("button", {
     "data-item": "image",
-    className: "item fileUploadWrapper--button"
+    className: "item fileUploadWrapper--button",
+    "aria-label": "Upload image",
+    title: "Upload image"
   }, React__default.createElement(Icons.Image, null)));
 };
 

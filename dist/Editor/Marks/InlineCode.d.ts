@@ -1,6 +1,7 @@
 import Mark from './Mark';
 declare class InlineCode extends Mark {
     get name(): string;
+    get label(): string;
     get icon(): string;
     get shortcuts(): {
         'Mod-`': (state: import("prosemirror-state").EditorState<any>, dispatch?: ((tr: import("prosemirror-state").Transaction<any>) => void) | undefined) => boolean;

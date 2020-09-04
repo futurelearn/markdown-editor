@@ -4,6 +4,7 @@ declare class BaseType {
     schema: Schema;
     constructor(schema: Schema);
     get name(): string;
+    get label(): string;
     get icon(): string;
     get inToolbar(): boolean;
     get command(): (_state: any, _dispatch: any) => void;
@@ -17,6 +18,7 @@ declare class BaseType {
         icon: string;
         command: (_state: any, _dispatch: any) => void;
         type: MarkType<any> | NodeType<any> | null;
+        label: string;
     } | null;
 }
 export default BaseType;
