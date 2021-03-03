@@ -25,6 +25,7 @@ const MarkDownEditor: FunctionComponent<MarkDownEditorType> = ({
   disabledMarks = [],
   disabledNodes = [],
   inputRef,
+  editable = true,
 }) => {
   const editorRef = useRef<HTMLDivElement>(null);
   const [editor, setEditor] = useState<EditorView | null>(null);
@@ -57,6 +58,7 @@ const MarkDownEditor: FunctionComponent<MarkDownEditorType> = ({
         onError: onError,
         disabledNodes,
         disabledMarks,
+        editable,
       });
 
       setEditor(editorView);

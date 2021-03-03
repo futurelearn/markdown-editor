@@ -33,6 +33,7 @@ const createEditorView = ({
   disabledMarks,
   disabledNodes,
   onError,
+  editable,
 }: CreateEditorViewOptions): EditorView => {
   const schema = setupSchema({ disabledMarks, disabledNodes });
   const LIST_ITEM_TYPE = schema.nodes.list_item;
@@ -69,7 +70,7 @@ const createEditorView = ({
     menuPlugin(toolbarItems(schema), onToolbarChange),
     ...markPlugins(schema),
     ...nodePlugins(schema),
-    editorPlugin(classes, placeholder),
+    editorPlugin(classes, placeholder, editable),
   ];
 
   schema.nodes.code_block &&

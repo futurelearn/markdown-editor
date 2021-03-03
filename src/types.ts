@@ -37,6 +37,7 @@ export type MarkDownEditor = {
   disabledNodes?: DisabledNode[];
   disabledMarks?: DisabledMark[];
   inputRef?: React.MutableRefObject<EditorView | null>;
+  editable?: boolean;
 };
 
 export type MenuItem = {
@@ -77,6 +78,7 @@ export type CreateEditorViewOptions = {
   imageUploadEndpoint?: { url: string; csrfToken: string };
   disabledNodes: string[];
   disabledMarks: string[];
+  editable: boolean;
 };
 
 export type ContextualHelp = {
