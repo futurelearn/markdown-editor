@@ -98,7 +98,7 @@ const MarkDownEditor: FunctionComponent<MarkDownEditorType> = ({
 
   return (
     <>
-      {editor && (
+      {editor && editable && (
         <Toolbar
           activeOptions={activeOptions}
           onClick={onToolbarClick}
@@ -113,7 +113,7 @@ const MarkDownEditor: FunctionComponent<MarkDownEditorType> = ({
         className={classNames({ hasPlaceholder: !markdownValue.length })}
         ref={editorRef}
       />
-      <ContextualHelp activeOptions={activeOptions} />
+      {editable && <ContextualHelp activeOptions={activeOptions} />}
       <input
         type="hidden"
         value={markdownValue}
