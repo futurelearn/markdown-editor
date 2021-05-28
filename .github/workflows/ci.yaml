@@ -13,7 +13,3 @@ jobs:
       - run: npm run build
       - run: npm run lint
       - run: npm run test:ci
-      - uses: futurelearn/actions/notify@main
-        if: always()
-        with:
-          webhook: ${{ secrets.SLACK_WEBHOOK }}
