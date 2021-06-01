@@ -209,7 +209,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     margin-top: 0; }
   .rich-text-editor p {
     margin-top: 1em;
-    white-space: pre-line;
+    white-space: pre-wrap;
     margin-bottom: 0; }
   .rich-text-editor h1,
   .rich-text-editor h2,
