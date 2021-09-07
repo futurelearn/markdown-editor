@@ -8,6 +8,7 @@
     "start:ci": "npm install && npm run start"
   },
   "dependencies": {
+    "path-parse": "^1.0.7",
     "react-app-polyfill": "^1.0.6"
   },
   "alias": {
