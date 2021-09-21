@@ -20,15 +20,16 @@ It currently supports:
 For more information see [Rich Text Editor](https://app.gitbook.com/@futurelearn/s/engineering-docs/the-futurelearn-app/frontend/javascript/rich-text-editor) in the engineering docs.
 
 ### Developing
-Run `npm install` to install the dependencies.
 
-`cd` into `example` and run `npm install` to install the dependencies of the example app which the test suite will be run against.
+1. Install `parcel` globally: `npm install -g parcel`
+2. Run `npm install` to install the dependencies.
+3. `cd ./example`
+4. Run `npm install` to install the dependencies of the example app which the test suite will be run against.
+5. When you start developing, run `npm run start` which will start compiling the assets in watch mode.
+6. To view the editor you can visit `http://localhost:1234/index.html`.
 
-You also need to install `parcel` globally: `npm install -g parcel`
+To run the test suite run `npm run test` which will start up both the example app and cypress.
 
-To run the test suite run `npm run test` which will start up both the example app and cypress. To view the editor you can visit `http://localhost:1234/index.html`.
-
-When you start developing, run `npm run start` which will start compiling the assets in watch mode.
 
 ### Supporting new elements
 
