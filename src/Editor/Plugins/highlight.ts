@@ -83,11 +83,6 @@ function getDecorations({ doc, name }: { doc: Node; name: string }) {
 }
 
 export const highlightPlugin = ({ name }: { name: string }) => {
-  low.registerLanguage('javascript', javascript);
-  low.registerLanguage('python', python);
-  low.registerLanguage('r', r);
-  low.registerLanguage('css', css);
-  low.registerLanguage('java', java);
   const key = new PluginKey('highlight');
   return new Plugin({
     key,
