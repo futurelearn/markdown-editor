@@ -33,9 +33,23 @@ You also need to install `parcel` globally: `npm install -g parcel`
 
 ### Running the tests
 
-To run the test suite run `npm run test` which will start up both the example app and cypress. To view the editor you can visit `http://localhost:1234/index.html`.
+To run all tests:
 
-When you start developing, run `npm run start` which will start compiling the assets in watch mode.
+```
+npm run test
+```
+
+This starts up both the example app and cypress.
+
+To view the editor you can visit `http://localhost:1234/index.html`.
+
+### Developing
+
+To compile the assets in watch mode, run:
+
+```
+npm run start
+```
 
 ## Supporting new elements
 
@@ -46,6 +60,7 @@ Prosemirror relies on it's [schema](https://github.com/ProseMirror/prosemirror-m
 When adding a new element, you need to add an icon (if it's going to be present in the toolbar) and then define a class for the node or mark that looks something like [this](https://github.com/futurelearn/markdown-editor/blob/master/src/Editor/Marks/Strong.ts). If you then add it to the [elements here](https://github.com/futurelearn/markdown-editor/blob/master/src/Editor/Marks/index.ts#L8) then the editor and the toolbar will both know about it.
 
 ## Releasing
+
 In order to prepare a new release, the current process is (there is almost definitely a better way to handle this)
 
 1. Create a new version using `npm version patch`
