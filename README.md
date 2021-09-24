@@ -20,6 +20,9 @@ It currently supports:
 For more information see [Rich Text Editor](https://app.gitbook.com/@futurelearn/s/engineering-docs/the-futurelearn-app/frontend/javascript/rich-text-editor) in the engineering docs.
 
 ### Developing
+
+The node version is listed in `.node-version`, `.nvmrc` and in `.github/workflows/ci.yaml`
+
 Run `npm install` to install the dependencies.
 
 `cd` into `example` and run `npm install` to install the dependencies of the example app which the test suite will be run against.
