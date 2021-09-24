@@ -21,6 +21,8 @@ For more information see [Rich Text Editor](https://app.gitbook.com/@futurelearn
 
 ## Developing
 
+### Setup
+
 The node version is listed in `.node-version`, `.nvmrc` and in `.github/workflows/ci.yaml`
 
 Run `npm install` to install the dependencies.
@@ -28,6 +30,8 @@ Run `npm install` to install the dependencies.
 `cd` into `example` and run `npm install` to install the dependencies of the example app which the test suite will be run against.
 
 You also need to install `parcel` globally: `npm install -g parcel`
+
+### Running the tests
 
 To run the test suite run `npm run test` which will start up both the example app and cypress. To view the editor you can visit `http://localhost:1234/index.html`.
 
