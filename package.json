@@ -74,7 +74,6 @@
     "react-dom": "^16.13.0",
     "rollup-plugin-postcss": "^2.4.1",
     "start-server-and-test": "^1.10.10",
-    "ts-loader": "^6.2.1",
     "tsdx": "^0.12.1",
     "tslib": "^1.11.1",
     "typescript": "^3.8.3"
