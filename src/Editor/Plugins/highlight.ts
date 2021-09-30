@@ -24,6 +24,7 @@ function getDecorations({ doc, name }: { doc: Node; name: string }) {
     item => item.node.type.name === name
   );
 
+  // @ts-ignore
   function parseNodes(nodes: lowlight.HastNode[], className = []) {
     return nodes.map(node => {
       const classes = [
@@ -60,11 +61,13 @@ function getDecorations({ doc, name }: { doc: Node; name: string }) {
       flattenDeep(parseNodes(nodes))
         .map(node => {
           const from = startPos;
+          // @ts-ignore
           const to = from + node.text.length;
 
           startPos = to;
 
           return {
+            // @ts-ignore
             ...node,
             from,
             to,
