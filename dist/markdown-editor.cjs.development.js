@@ -216,7 +216,7 @@ var nodeIsActive = function nodeIsActive(state, type) {
   var node = prosemirrorUtils.findSelectedNodeOfType(type)(state.selection) || prosemirrorUtils.findParentNode(predicate)(state.selection);
   return {
     isActive: !!node,
-    node: node === null || node === void 0 ? void 0 : node.node
+    node: node == null ? void 0 : node.node
   };
 };
 
@@ -538,7 +538,7 @@ function getDecorations(_ref) {
   var languages = [];
   var blocks = prosemirrorUtils.findBlockNodes(doc).filter(function (item) {
     return item.node.type.name === name;
-  });
+  }); // @ts-ignore
 
   function parseNodes(nodes, className) {
     if (className === void 0) {
@@ -579,7 +579,8 @@ function getDecorations(_ref) {
       }
 
       lodash.flattenDeep(parseNodes(nodes)).map(function (node) {
-        var from = startPos;
+        var from = startPos; // @ts-ignore
+
         var to = from + node.text.length;
         startPos = to;
         return _extends({}, node, {
