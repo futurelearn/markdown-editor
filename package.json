@@ -68,6 +68,7 @@
     "cypress-file-upload": "^3.5.3",
     "node-sass": "^6.0.1",
     "postcss": "^8.3.7",
+    "postcss-import": "^14.0.2",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "rollup-plugin-postcss": "^4.0.1",

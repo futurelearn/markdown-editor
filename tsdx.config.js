@@ -1,5 +1,6 @@
 const replace = require('@rollup/plugin-replace');
 const postcss = require('rollup-plugin-postcss');
+const postcssImport = require('postcss-import');
 
 module.exports = {
   rollup(config, options) {
@@ -12,7 +13,12 @@ module.exports = {
         : plugin
     );
 
-    config.plugins.push(postcss({ extract: true }));
+    config.plugins.push(
+      postcss({
+        plugins: [postcssImport],
+        extract: true,
+      })
+    );
 
     return config;
   },
