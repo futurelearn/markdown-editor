@@ -1,5 +1,6 @@
 .ProseMirror {
-  position: relative; }
+  position: relative;
+}
 
 .ProseMirror {
   word-wrap: break-word;
@@ -7,125 +8,145 @@
   white-space: break-spaces;
   -webkit-font-variant-ligatures: none;
   font-variant-ligatures: none;
-  font-feature-settings: "liga" 0;
-  /* the above doesn't seem to work in Edge */ }
+  font-feature-settings: "liga" 0; /* the above doesn't seem to work in Edge */
+}
 
 .ProseMirror pre {
-  white-space: pre-wrap; }
+  white-space: pre-wrap;
+}
 
 .ProseMirror li {
-  position: relative; }
+  position: relative;
+}
 
-.ProseMirror-hideselection *::selection {
-  background: transparent; }
+.ProseMirror-hideselection *::selection { background: transparent; }
 
-.ProseMirror-hideselection *::-moz-selection {
-  background: transparent; }
+.ProseMirror-hideselection *::-moz-selection { background: transparent; }
 
-.ProseMirror-hideselection {
-  caret-color: transparent; }
+.ProseMirror-hideselection { caret-color: transparent; }
 
 .ProseMirror-selectednode {
-  outline: 2px solid #8cf; }
+  outline: 2px solid #8cf;
+}
 
 /* Make sure li selections wrap around markers */
+
 li.ProseMirror-selectednode {
-  outline: none; }
+  outline: none;
+}
 
 li.ProseMirror-selectednode:after {
   content: "";
   position: absolute;
   left: -32px;
-  right: -2px;
-  top: -2px;
-  bottom: -2px;
+  right: -2px; top: -2px; bottom: -2px;
   border: 2px solid #8cf;
-  pointer-events: none; }
+  pointer-events: none;
+}
 
 /*
 
 github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
 */
+
 .hljs {
   display: block;
   overflow-x: auto;
   padding: 0.5em;
   color: #333;
-  background: #f8f8f8; }
+  background: #f8f8f8;
+}
 
 .hljs-comment,
 .hljs-quote {
   color: #998;
-  font-style: italic; }
+  font-style: italic;
+}
 
 .hljs-keyword,
 .hljs-selector-tag,
 .hljs-subst {
   color: #333;
-  font-weight: bold; }
+  font-weight: bold;
+}
 
 .hljs-number,
 .hljs-literal,
 .hljs-variable,
 .hljs-template-variable,
 .hljs-tag .hljs-attr {
-  color: #008080; }
+  color: #008080;
+}
 
 .hljs-string,
 .hljs-doctag {
-  color: #d14; }
+  color: #d14;
+}
 
 .hljs-title,
 .hljs-section,
 .hljs-selector-id {
   color: #900;
-  font-weight: bold; }
+  font-weight: bold;
+}
 
 .hljs-subst {
-  font-weight: normal; }
+  font-weight: normal;
+}
 
 .hljs-type,
 .hljs-class .hljs-title {
   color: #458;
-  font-weight: bold; }
+  font-weight: bold;
+}
 
 .hljs-tag,
 .hljs-name,
 .hljs-attribute {
   color: #000080;
-  font-weight: normal; }
+  font-weight: normal;
+}
 
 .hljs-regexp,
 .hljs-link {
-  color: #009926; }
+  color: #009926;
+}
 
 .hljs-symbol,
 .hljs-bullet {
-  color: #990073; }
+  color: #990073;
+}
 
 .hljs-built_in,
 .hljs-builtin-name {
-  color: #0086b3; }
+  color: #0086b3;
+}
 
 .hljs-meta {
   color: #999;
-  font-weight: bold; }
+  font-weight: bold;
+}
 
 .hljs-deletion {
-  background: #fdd; }
+  background: #fdd;
+}
 
 .hljs-addition {
-  background: #dfd; }
+  background: #dfd;
+}
 
 .hljs-emphasis {
-  font-style: italic; }
+  font-style: italic;
+}
 
 .hljs-strong {
-  font-weight: bold; }
+  font-weight: bold;
+}
 
 .CodeMirror {
-  height: auto; }
+  height: auto;
+}
 
 .toolbar {
   display: flex;
@@ -135,7 +156,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   border-top: 1px solid #cacacc;
   border-left: 1px solid #cacacc;
   border-right: 1px solid #cacacc;
-  display: flex; }
+  display: flex;
+}
 
 .item {
   background: none;
@@ -146,36 +168,51 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   box-sizing: content-box;
   margin-right: 5px;
   cursor: pointer;
-  color: #3a343a; }
-  .item svg {
-    vertical-align: top; }
-    .item svg * {
-      fill: currentColor; }
+  color: #3a343a;
+}
+
+.item svg {
+  vertical-align: top;
+}
+
+.item svg * {
+  fill: currentColor;
+}
+
+.item:hover {
+  color: #2541fc;
+}
+
+@media (hover: none) {
   .item:hover {
-    color: #2541fc; }
-  @media (hover: none) {
-    .item:hover {
-      color: #3a343a; } }
+    color: #3a343a;
+  }
+}
 
 .item--active {
   background: #ededee;
-  color: #2541fc; }
+  color: #2541fc;
+}
 
 .fileUploadWrapper {
   position: relative;
-  overflow: hidden; }
-  .fileUploadWrapper input[type=file],
-  .fileUploadWrapper input[type=file]::-webkit-file-upload-button {
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0;
-    width: 32px;
-    height: 32px;
-    cursor: pointer; }
+  overflow: hidden;
+}
+
+.fileUploadWrapper input[type=file],
+.fileUploadWrapper input[type=file]::-webkit-file-upload-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+}
 
 .fileUploadWrapper input:hover + .item {
-  color: #2541fc; }
+  color: #2541fc;
+}
 
 .rich-text-editor {
   min-height: 156px;
@@ -186,103 +223,149 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   color: #3a343a;
   white-space: pre-wrap;
   overflow: hidden;
-  overflow-y: auto; }
-  .rich-text-editor:focus {
-    outline: none;
-    border: 1px solid #2541fc; }
-  .rich-text-editor > :first-child {
-    margin-top: 0; }
+  overflow-y: auto;
+}
+
+.rich-text-editor:focus {
+  outline: none;
+  border: 1px solid #2541fc;
+}
+
+.rich-text-editor > :first-child {
+  margin-top: 0;
+}
 
 .hasPlaceholder .rich-text-editor:not(:focus):before {
   content: attr(data-placeholder);
   color: #727376;
-  font-weight: normal; }
+  font-weight: normal;
+}
 
 .rich-text-editor {
   font-size: 16px;
-  line-height: 24px; }
-  .rich-text-editor > * {
-    margin-bottom: 0; }
-  .rich-text-editor > * + * {
-    margin-top: 1em; }
-  .rich-text-editor * > p:first-of-type {
-    margin-top: 0; }
-  .rich-text-editor p {
-    margin-top: 1em;
-    white-space: pre-wrap;
-    margin-bottom: 0; }
-  .rich-text-editor h1,
-  .rich-text-editor h2,
-  .rich-text-editor h3,
-  .rich-text-editor h4,
-  .rich-text-editor h5,
-  .rich-text-editor h6 {
-    font-size: 20px;
-    line-height: 30px; }
-  .rich-text-editor ul {
-    list-style: outside; }
-  .rich-text-editor li {
-    margin-top: 0.5em;
-    margin-bottom: 0; }
-    .rich-text-editor li:first-of-type {
-      margin-top: 0; }
-  .rich-text-editor blockquote {
-    border-left: 4px solid #de00a5;
-    margin-left: 0;
-    margin-right: 0;
-    padding-left: 0.5em; }
-  .rich-text-editor code {
-    padding: 4px;
-    color: gray;
-    border: gray;
-    background-color: #fafafa;
-    border: 1px solid #ededee;
-    border-radius: 3px; }
-  .rich-text-editor pre {
-    padding: 0px; }
-    .rich-text-editor pre code {
-      display: block;
-      padding: 0.5em; }
-  .rich-text-editor img {
-    max-width: 400px; }
-  .rich-text-editor .image__placeholder {
-    display: flex;
-    align-items: center;
-    width: 400px;
-    height: 300px;
-    position: relative;
-    background: #ededee; }
-  .rich-text-editor .loader,
-  .rich-text-editor .loader:before,
-  .rich-text-editor .loader:after {
-    border-radius: 50%;
-    width: 16px;
-    height: 16px;
-    animation-fill-mode: both;
-    animation: load 1.8s infinite ease-in-out; }
-  .rich-text-editor .loader {
-    color: #de00a5;
-    font-size: 10px;
-    margin: -16px auto 0;
-    position: relative;
-    text-indent: -9999em;
-    transform: translateZ(0);
-    animation-delay: -0.16s; }
-  .rich-text-editor .loader:before,
-  .rich-text-editor .loader:after {
-    content: '';
-    position: absolute;
-    top: 0; }
-  .rich-text-editor .loader:before {
-    left: -20px;
-    animation-delay: -0.32s; }
-  .rich-text-editor .loader:after {
-    left: 20px; }
+  line-height: 24px;
+}
+
+.rich-text-editor > * {
+  margin-bottom: 0;
+}
+
+.rich-text-editor > * + * {
+  margin-top: 1em;
+}
+
+.rich-text-editor * > p:first-of-type {
+  margin-top: 0;
+}
+
+.rich-text-editor p {
+  margin-top: 1em;
+  white-space: pre-wrap;
+  margin-bottom: 0;
+}
+
+.rich-text-editor h1,
+.rich-text-editor h2,
+.rich-text-editor h3,
+.rich-text-editor h4,
+.rich-text-editor h5,
+.rich-text-editor h6 {
+  font-size: 20px;
+  line-height: 30px;
+}
+
+.rich-text-editor ul {
+  list-style: outside;
+}
+
+.rich-text-editor li {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+}
+
+.rich-text-editor li:first-of-type {
+  margin-top: 0;
+}
+
+.rich-text-editor blockquote {
+  border-left: 4px solid #de00a5;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0.5em;
+}
+
+.rich-text-editor code {
+  padding: 4px;
+  color: gray;
+  border: gray;
+  background-color: #fafafa;
+  border: 1px solid #ededee;
+  border-radius: 3px;
+}
+
+.rich-text-editor pre {
+  padding: 0px;
+}
+
+.rich-text-editor pre code {
+  display: block;
+  padding: 0.5em;
+}
+
+.rich-text-editor img {
+  max-width: 400px;
+}
+
+.rich-text-editor .image__placeholder {
+  display: flex;
+  align-items: center;
+  width: 400px;
+  height: 300px;
+  position: relative;
+  background: #ededee;
+}
+
+.rich-text-editor .loader,
+.rich-text-editor .loader:before,
+.rich-text-editor .loader:after {
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  animation-fill-mode: both;
+  animation: load 1.8s infinite ease-in-out;
+}
+
+.rich-text-editor .loader {
+  color: #de00a5;
+  font-size: 10px;
+  margin: -16px auto 0;
+  position: relative;
+  text-indent: -9999em;
+  transform: translateZ(0);
+  animation-delay: -0.16s;
+}
+
+.rich-text-editor .loader:before,
+.rich-text-editor .loader:after {
+  content: "";
+  position: absolute;
+  top: 0;
+}
+
+.rich-text-editor .loader:before {
+  left: -20px;
+  animation-delay: -0.32s;
+}
+
+.rich-text-editor .loader:after {
+  left: 20px;
+}
 
 @keyframes load {
-  0%,
-  80%,
-  100% {
-    box-shadow: 0 16px 0 -8px; }
+  0%, 80%, 100% {
+    box-shadow: 0 16px 0 -8px;
+  }
   40% {
-    box-shadow: 0 16px 0 0; } }
+    box-shadow: 0 16px 0 0;
+  }
+}

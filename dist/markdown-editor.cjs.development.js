@@ -216,7 +216,7 @@ var nodeIsActive = function nodeIsActive(state, type) {
   var node = prosemirrorUtils.findSelectedNodeOfType(type)(state.selection) || prosemirrorUtils.findParentNode(predicate)(state.selection);
   return {
     isActive: !!node,
-    node: node === null || node === void 0 ? void 0 : node.node
+    node: node == null ? void 0 : node.node
   };
 };
 
@@ -528,7 +528,17 @@ function _extends() {
 function _inheritsLoose(subClass, superClass) {
   subClass.prototype = Object.create(superClass.prototype);
   subClass.prototype.constructor = subClass;
-  subClass.__proto__ = superClass;
+
+  _setPrototypeOf(subClass, superClass);
+}
+
+function _setPrototypeOf(o, p) {
+  _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+    o.__proto__ = p;
+    return o;
+  };
+
+  return _setPrototypeOf(o, p);
 }
 
 function getDecorations(_ref) {
@@ -538,7 +548,7 @@ function getDecorations(_ref) {
   var languages = [];
   var blocks = prosemirrorUtils.findBlockNodes(doc).filter(function (item) {
     return item.node.type.name === name;
-  });
+  }); // @ts-ignore
 
   function parseNodes(nodes, className) {
     if (className === void 0) {
@@ -579,7 +589,8 @@ function getDecorations(_ref) {
       }
 
       lodash.flattenDeep(parseNodes(nodes)).map(function (node) {
-        var from = startPos;
+        var from = startPos; // @ts-ignore
+
         var to = from + node.text.length;
         startPos = to;
         return _extends({}, node, {

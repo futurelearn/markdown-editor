@@ -1,5 +1,5 @@
-@import '~prosemirror-view/style/prosemirror.css';
-@import '~highlight.js/styles/github.css';
+@import 'prosemirror-view/style/prosemirror.css';
+@import 'highlight.js/styles/github.css';
 
 $black: #3a343a;
 $medium-grey: #727376;
@@ -63,7 +63,7 @@ $pink: #de00a5;
   position: relative;
   overflow: hidden;
 
-  input[type=file], 
+  input[type=file],
   input[type=file]::-webkit-file-upload-button {
     position: absolute;
     top: 0;
