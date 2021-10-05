@@ -65,4 +65,4 @@ In order to prepare a new release, the current process is (there is almost defin
 
 1. Create a new version using `npm version patch`
 2. `run npm run build` to build the dist and push up to master
-3. You can then update it within the main app by using `yarn add ssh:git@github.com:futurelearn/markdown-editor.git`
+3. You can then update it within the main app by using `yarn add https://github.com/futurelearn/markdown-editor.git`
