@@ -30,7 +30,7 @@
   "author": "Sam McTaggart",
   "dependencies": {
     "classnames": "^2.2.6",
-    "highlight.js": "^9.18.1",
+    "highlight.js": "^11.2.0",
     "lodash": "^4.17.15",
     "lodash-es": "^4.17.15",
     "lowlight": "^2.3.0",
