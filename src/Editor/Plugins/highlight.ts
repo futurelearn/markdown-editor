@@ -6,15 +6,15 @@ import { Plugin, PluginKey } from 'prosemirror-state';
 import { findBlockNodes } from 'prosemirror-utils';
 import { flattenDeep } from 'lodash';
 
-//@ts-ignore
+//@ts-expect-error
 import javascript from 'highlight.js/lib/languages/javascript';
-//@ts-ignore
+//@ts-expect-error
 import python from 'highlight.js/lib/languages/python';
-//@ts-ignore
+//@ts-expect-error
 import r from 'highlight.js/lib/languages/r';
-//@ts-ignore
+//@ts-expect-error
 import css from 'highlight.js/lib/languages/css';
-//@ts-ignore
+//@ts-expect-error
 import java from 'highlight.js/lib/languages/java';
 
 function getDecorations({ doc, name }: { doc: Node; name: string }) {
@@ -91,6 +91,7 @@ export const highlightPlugin = ({ name }: { name: string }) => {
   low.registerLanguage('r', r);
   low.registerLanguage('css', css);
   low.registerLanguage('java', java);
+
   const key = new PluginKey('highlight');
   return new Plugin({
     key,
