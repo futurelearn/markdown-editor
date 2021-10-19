@@ -56,10 +56,10 @@ describe('Code block', () => {
       .type('var name = "code";')
       .type('{shift}{enter}')
       .type('```')
-      .type('def name:{enter}    code');
+      .type('def name:{enter}    "code"');
     cy.get('input[type="hidden"]').should(
       'have.value',
-      '~~~javascript\nvar name = "code";\n~~~\n\n~~~python\ndef name:\n    code\n~~~'
+      '~~~javascript\nvar name = "code";\n~~~\n\n~~~python\ndef name:\n    "code"\n~~~'
     );
   });
 
